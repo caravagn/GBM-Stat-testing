@@ -1,0 +1,334 @@
+MutationWES	55SWES	55T1WES	55T2WES	55T3WES	55T4WES	55S*	55B	55M	55S	55T2	55T3	55T4	55T1	QUAL	FILTER	Consequence	IMPACT	Gene	ENST	Exon	HGVSc	HGVSp	cDNA_position	CDS_position	Protein_position	Amino_acids	Codons	Variant_clasa	SIFT	Polyphen
+	
+1;899915;G>A	0.188	0	0	0	0.207	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,badReads,QD	upstream_gene_variant|splice_region_variant&intron_variant|	MODIFIER|LOW|	PLEKHN1|KLHL17|	ENST00000379410|ENST00000338591|	||	|ENST00000338591.3:c.1700+5G>A|	||	||	||	||	||	||	SNV|SNV|	||	||	
+1;1007624;G>A	0.254	0.389	0.315	0.15	0.388	NA	NA	NA	NA	NA	NA	NA	NA	92		missense_variant|downstream_gene_variant|	MODERATE|MODIFIER|	RNF223|RP11-465B22.3|	ENST00000453464|ENST00000412397|	2/2||	ENST00000453464.2:c.323C>T||	ENSP00000410533.1:p.Pro108Leu||	624||	323||	108||	P/L||	cCg/cTg||	SNV|SNV|	deleterious(0)||	possibly_damaging(0.802)||	
+1;12429284;CTGTG>C,CTG	0.207	0.105	0.091	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	VPS13D,VPS13D	-	-	-	-	-	-	-	-	-	-	-	-	
+1;16011192;G>GGCGACCCTGCTGCCGCAGGGACTC	0.172	0.25	0.2	0.174	0.154	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PLEKHM2	-	-	-	-	-	-	-	-	-	-	-	-	
+1;17298147;G>A	0	0	0.125	0	0	0	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	splice_region_variant&intron_variant|downstream_gene_variant|	LOW|MODIFIER|	CROCC|MFAP2|	ENST00000375541|ENST00000375535|	||	ENST00000375541.5:c.5967+5G>A||	||	||	||	||	||	||	SNV|SNV|	||	||	
+1;19584698;TA>TAAA,TAA,T	0	0.08	0.083	0.188	0.05	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	MRTO4,MRTO4,MRTO4	-	-	-	-	-	-	-	-	-	-	-	-	
+1;35472675;G>A	0.271	0.242	0.419	0.085	0.359	0.418361059766	NA	NA	NA	NA	NA	NA	NA	2962		stop_gained|stop_gained&NMD_transcript_variant|	HIGH|HIGH|	ZMYM6|RP11-244H3.4|	ENST00000357182|ENST00000487874|	12/16|12/17|	ENST00000357182.4:c.1690C>T|ENST00000487874.1:c.1690C>T|	ENSP00000349708.4:p.Arg564Ter|ENSP00000421752.1:p.Arg564Ter|	1918|1875|	1690|1690|	564|564|	R/*|R/*|	Cga/Tga|Cga/Tga|	SNV|SNV|	||	||	
+1;53542895;C>T	0.314	0.235	0.451	0.138	0.311	0.451711491443	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant|intron_variant&non_coding_transcript_variant|upstream_gene_variant|	LOW|MODIFIER|MODIFIER|	PODN|RP11-334A14.5|HIGD1AP11|	ENST00000312553|ENST00000447867|ENST00000438361|	6/11|||	ENST00000312553.5:c.759C>T|ENST00000447867.1:n.369-7187G>A||	ENST00000312553.5:c.759C>T(p.%3D)|||	766|||	759|||	253|||	D|||	gaC/gaT|||	SNV|SNV|SNV|	|||	|||	
+1;77334276;CGCA>C	0	0.063	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	inframe_deletion	MODERATE	ST6GALNAC5	ENST00000477717	2/5	ENST00000477717.1:c.132_134delGCA	ENSP00000417583.1:p.Gln49del	346-348	111-113	37-38	PQ/P	ccGCAg/ccg	deletion			
+1;81967466;TCAG>T,TCAGCAG	0.414	0.346	0.294	0.417	0.529	NA	NA	NA	NA	NA	NA	NA	NA	78		upstream_gene_variant|upstream_gene_variant|upstream_gene_variant|upstream_gene_variant|	MODIFIER|MODIFIER|MODIFIER|MODIFIER|	RP5-837I24.1|RP5-837I24.1|RP5-837I24.6|RP5-837I24.6|	ENST00000448213|ENST00000448213|ENST00000439024|ENST00000439024|	||||	||||	||||	||||	||||	||||	||||	||||	sequence_alteration|sequence_alteration|sequence_alteration|sequence_alteration|	||||	||||	
+1;89613321;G>GC	0	0	0	0	0.149	0.00154178230034	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	frameshift_variant	HIGH	GBP7	ENST00000294671	8/11	ENST00000294671.2:c.1293dupG	ENSP00000294671.2:p.His432AlafsTer12	1432-1433	1293-1294	431-432	-/X	-/G	insertion			
+1;100343581;TA>T	0	0	0	0.15	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	AGL	-	-	-	-	-	-	-	-	-	-	-	-	
+1;103385631;G>T	0.263	0.111	0.333	0.364	0.05	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL11A1	-	-	-	-	-	-	-	-	-	-	-	-	
+1;112019529;G>A	0.261	0.196	0.356	0.127	0.254	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	C1orf162	-	-	-	-	-	-	-	-	-	-	-	-	
+1;118483352;GACA>G	0	0	0.09	0.074	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	WDR3	-	-	-	-	-	-	-	-	-	-	-	-	
+1;118567943;A>G	0.257	0.229	0.463	0.185	0.319	0.412056737589	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	SPAG17	ENST00000336338	27/49	ENST00000336338.5:c.3827T>C	ENSP00000337804.5:p.Met1276Thr	3893	3827	1276	M/T	aTg/aCg	SNV	tolerated(0.32)	benign(0.007)	
+1;145017822;CTCCTTCCTTCCTTCCTTCCT>C	0.148	0	0.059	0.051	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+1;152733325;C>T	0.161	0	0	0	0.164	0.00136923779096	0.0018018018018	0	0.140562248996	0	0	0.1780235462	0.0596613813491	0	Q20,QD	missense_variant	MODERATE	KPRP	ENST00000368773	2/2	ENST00000368773.1:c.1261C>T	ENSP00000357762.1:p.Arg421Cys	1319	1261	421	R/C	Cgt/Tgt	SNV	tolerated(1)	benign(0)	
+1;152996546;A>T	0.102	0	0	0	0.256	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+1;157094923;C>A	0.158	0	0	0	0.141	0	0	0	0.138531729573	0.00809199318569	0	0.166367229608	0.0416150606886	0	Q20	stop_gained|upstream_gene_variant|	HIGH|MODIFIER|	ETV3|CYCSP52|	ENST00000368192|ENST00000422857|	5/5||	ENST00000368192.4:c.1249G>T||	ENSP00000357175.4:p.Glu417Ter||	1314||	1249||	417||	E/*||	Gag/Tag||	SNV|SNV|	||	||	
+1;159505876;A>T	0.056	0	0	0	0.16	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+1;160651284;A>T	0.178	0	0	0	0.274	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CD48	-	-	-	-	-	-	-	-	-	-	-	-	
+1;181767716;G>A	0	0.28	0	0.224	0	0	0	0	0.000661922885984	0.00071403070332	0.214521452145	0.0266170578134	0.216675244467	0	Q20	missense_variant	MODERATE	CACNA1E	ENST00000367573	48/48	ENST00000367573.2:c.6688G>A	ENSP00000356545.2:p.Glu2230Lys	6688	6688	2230	E/K	Gag/Aag	SNV	deleterious(0.01)	possibly_damaging(0.905)	
+1;203678292;GA>G	0	0	0	0.214	0.067	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ATP2B4	-	-	-	-	-	-	-	-	-	-	-	-	
+1;214792669;TTG>T	0	0	0	0.056	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CENPF	-	-	-	-	-	-	-	-	-	-	-	-	
+1;215916728;ATGTG>ATG,A	0.286	0.318	0.375	0.313	0.481	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	USH2A,USH2A	-	-	-	-	-	-	-	-	-	-	-	-	
+1;220799842;G>T	0	0	0	0.103	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MARK1	-	-	-	-	-	-	-	-	-	-	-	-	
+1;227068242;GGACA>G	0.211	0.31	0.438	0.133	0.294	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	PSEN2	-	-	-	-	-	-	-	-	-	-	-	-	
+1;228005049;G>A	0	0.266	0	0.192	0	0	0	0	0	0	0.138920780712	0.0198938992042	0.193201626961	0	Q20	missense_variant	MODERATE	PRSS38	ENST00000366757	3/5	ENST00000366757.3:c.451G>A	ENSP00000355719.3:p.Val151Met	475	451	151	V/M	Gtg/Atg	SNV	deleterious(0)	probably_damaging(0.986)	
+1;228520994;C>T	0.193	0	0.408	0	0	0.337387074357	0	0	0.131578947368	0.286246893123	0	0	0	2962		missense_variant	MODERATE	OBSCN	ENST00000570156	69/116	ENST00000570156.2:c.18697C>T	ENSP00000455507.2:p.Arg6233Cys	18771	18697	6233	R/C	Cgc/Tgc	SNV		probably_damaging(0.992)	
+1;237173157;C>T	0	0	0.176	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+1;244993400;G>A	0.2	0.143	0.393	0.16	0.278	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+1;248285629;C>A	0.304	0.247	0.45	0.138	0.358	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+2;1658226;G>A	0.343	0.284	0.467	0.142	0.373	0.419799704482	0	0.0332225913621	0.35475161987	0.35564516129	0.198895027624	0.314424635332	0.268965517241	2962		missense_variant	MODERATE	PXDN	ENST00000252804	15/23	ENST00000252804.4:c.1892C>T	ENSP00000252804.4:p.Ala631Val	1943	1892	631	A/V	gCg/gTg	SNV	deleterious(0)	probably_damaging(0.929)	
+2;10933107;TTTAA>T	0.203	0.161	0.417	0.074	0.333	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PDIA6	-	-	-	-	-	-	-	-	-	-	-	-	
+2;15319336;CGT>C	0.074	0.077	0.143	0.077	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NBAS	-	-	-	-	-	-	-	-	-	-	-	-	
+2;31596695;C>T	0.336	0.208	0.429	0.198	0.275	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	XDH	-	-	-	-	-	-	-	-	-	-	-	-	
+2;32369809;T>A	0	0.333	0	0.333	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SPAST	-	-	-	-	-	-	-	-	-	-	-	-	
+2;39201073;CTA>C	0.133	0	0	0.107	0.129	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	ARHGEF33	-	-	-	-	-	-	-	-	-	-	-	-	
+2;68882089;C>T	0.336	0.413	0.393	0.193	0.27	0.404173601331	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	PROKR1	ENST00000303786	3/3	ENST00000303786.3:c.563C>T	ENSP00000303775.3:p.Thr188Met	983	563	188	T/M	aCg/aTg	SNV	tolerated(0.2)	benign(0.006)	
+2;69747027;A>G	0.231	0	0	0	0.591	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	AAK1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;73635986;TCTTGTC>T	0.108	0.094	0.065	0.061	0.069	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ALMS1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;97140962;A>G	0.067	0.093	0.172	0.173	0.065	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+2;100006451;C>G	0.303	0.281	0.36	0.125	0.406	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	EIF5B	-	-	-	-	-	-	-	-	-	-	-	-	
+2;101276996;GCATGACAC>ACATGACAC,ACATGACAT	0.075	0.079	0.13	0.091	0.146	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,HapScore,QD	non_coding_transcript_exon_variant&non_coding_transcript_variant|non_coding_transcript_exon_variant&non_coding_transcript_variant|	MODIFIER|MODIFIER|	NANOGNBP1|NANOGNBP1|	ENST00000448444|ENST00000448444|	1/1|1/1|	ENST00000448444.2:n.336_344delGCATGACACinsACATGACAC|ENST00000448444.2:n.336_344delGCATGACACinsACATGACAT|	||	336-344|336-344|	||	||	||	||	substitution|substitution|	||	||	
+2;101277017;ATCAAA>GTCAAA,GTCAAT	0.058	0.083	0.119	0.098	0.111	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,HapScore,QD	non_coding_transcript_exon_variant&non_coding_transcript_variant|non_coding_transcript_exon_variant&non_coding_transcript_variant|	MODIFIER|MODIFIER|	NANOGNBP1|NANOGNBP1|	ENST00000448444|ENST00000448444|	1/1|1/1|	ENST00000448444.2:n.357_362delATCAAAinsGTCAAA|ENST00000448444.2:n.357_362delATCAAAinsGTCAAT|	||	357-362|357-362|	||	||	||	||	substitution|substitution|	||	||	
+2;101277048;TAACAAAT>CAACAAAT,CAATAAAG	0.058	0	0.063	0	0	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	non_coding_transcript_exon_variant&non_coding_transcript_variant|non_coding_transcript_exon_variant&non_coding_transcript_variant|	MODIFIER|MODIFIER|	NANOGNBP1|NANOGNBP1|	ENST00000448444|ENST00000448444|	1/1|1/1|	ENST00000448444.2:n.388_395delTAACAAATinsCAACAAAT|ENST00000448444.2:n.388_395delTAACAAATinsCAATAAAG|	||	388-395|388-395|	||	||	||	||	substitution|substitution|	||	||	
+2;110310798;TA>T	0	0.19	0	0.182	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant|splice_region_variant	-	SEPT10	-	-	-	-	-	-	-	-	-	-	-	-	
+2;135625399;CTA>C	0.07	0	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ACMSD	-	-	-	-	-	-	-	-	-	-	-	-	
+2;165557069;TG>T	0	0	0	0	0.104	0	NA	NA	NA	NA	NA	NA	NA	0	Q20	frameshift_variant	HIGH	COBLL1	ENST00000342193	10/14	ENST00000342193.4:c.1539delC	ENSP00000341360.4:p.Met514TrpfsTer18	1755	1539	513	S/X	tcC/tc	deletion			
+2;169873115;A>C	0	0.222	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ABCB11	-	-	-	-	-	-	-	-	-	-	-	-	
+2;174104037;GA>GAAA,GAA,G	0.152	0.07	0.116	0.19	0.085	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	AC013461.1,AC013461.1,AC013461.1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;178986136;C>T	0	0.05	0	0.069	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RBM45	-	-	-	-	-	-	-	-	-	-	-	-	
+2;179515089;TCTTC>T	0.214	0	0	0	0.151	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	TTN	-	-	-	-	-	-	-	-	-	-	-	-	
+2;189856355;C>G	0	0.205	0	0.198	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL3A1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;190331032;G>A	0.189	0	0	0	0.147	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	WDR75	-	-	-	-	-	-	-	-	-	-	-	-	
+2;197791107;GC>G	0	0.208	0	0.125	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PGAP1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;209358141;C>T	0.169	0	0	0	0.444	0.00829383886256	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	synonymous_variant|intron_variant&non_coding_transcript_variant|	LOW|MODIFIER|	PTH2R|AC019185.4|	ENST00000272847|ENST00000424628|	13/13||	ENST00000272847.2:c.1410C>T|ENST00000424628.1:n.103+23464C>T|	ENST00000272847.2:c.1410C>T(p.%3D)||	1623||	1410||	470||	R||	cgC/cgT||	SNV|SNV|	||	||	
+2;220418508;G>C	0	0.393	0	0.061	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	OBSL1	-	-	-	-	-	-	-	-	-	-	-	-	
+2;220435732;G>C	0	0.273	0	0.154	0	NA	0	NA	0	0	NA	0.0125786163522	0.175	0	Q20,QD	upstream_gene_variant|missense_variant|	MODIFIER|MODERATE|	INHA|OBSL1|	ENST00000243786|ENST00000404537|	|1/21|	|ENST00000404537.1:c.223C>G|	|ENSP00000385636.1:p.Leu75Val|	|280|	|223|	|75|	|L/V|	|Ctg/Gtg|	SNV|SNV|	|tolerated(0.22)|	|benign(0.103)|	
+2;222433302;G>A	0.096	0	0	0	0.129	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	EPHA4	-	-	-	-	-	-	-	-	-	-	-	-	
+2;242035573;C>T	0.315	0.288	0.419	0.155	0.38	0.366136656639	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant|downstream_gene_variant|	MODERATE|MODIFIER|	MTERFD2|SNED1|	ENST00000391980|ENST00000310397|	4/4||	ENST00000391980.2:c.986G>A||	ENSP00000375840.2:p.Ser329Asn||	1045||	986||	329||	S/N||	aGc/aAc||	SNV|SNV|	tolerated(0.34)||	benign(0.012)||	
+3;2613192;G>T	0.326	0.244	0.519	0.139	0.4	0.390773859268	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	CNTN4	ENST00000397461	3/24	ENST00000397461.1:c.5G>T	ENSP00000380602.1:p.Arg2Met	389	5	2	R/M	aGg/aTg	SNV	tolerated(0.24)	benign(0.053)	
+3;14583639;C>T	0	0	0	0	0.162	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+3;30045473;GT>G,GTT	0.057	0.184	0.102	0	0.103	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant,3_prime_UTR_variant	-	RBMS3,RBMS3	-	-	-	-	-	-	-	-	-	-	-	-	
+3;38596080;T>C	0	0.243	0	0.151	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SCN5A	-	-	-	-	-	-	-	-	-	-	-	-	
+3;39170609;G>A	0	0.239	0	0.119	0	0.00107626076261	0.000933416303671	0	0	0.00413543551305	0.180781758958	0.00636182902584	0.224894998091	0	Q20,QD	missense_variant	MODERATE	TTC21A	ENST00000431162	15/29	ENST00000431162.2:c.1964G>A	ENSP00000398211.2:p.Gly655Asp	2098	1964	655	G/D	gGc/gAc	SNV	deleterious(0.05)	probably_damaging(1)	
+3;48413708;G>A	0	0	0	0	0.158	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+3;77613740;GTA>G	0	0	0.111	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ROBO2	-	-	-	-	-	-	-	-	-	-	-	-	
+3;97783491;T>A	0	0.2	0.051	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+3;99568593;T>C	0.294	0.245	0.456	0.158	0.354	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,missense_variant	-	C3orf26,FILIP1L	-	-	-	-	-	-	-	-	-	-	-	-	
+3;109635598;C>T	0.319	0.146	0.29	0.159	0.333	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+3;121126671;A>T	0.333	0.316	0.5	0.2	0.15	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	STXBP5L	-	-	-	-	-	-	-	-	-	-	-	-	
+3;121415023;T>A	0.145	0	0	0	0.165	0	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	missense_variant	MODERATE	GOLGB1	ENST00000393667	13/22	ENST00000393667.3:c.4347A>T	ENSP00000377275.3:p.Glu1449Asp	4458	4347	1449	E/D	gaA/gaT	SNV		benign(0.398)	
+3;142557906;TA>T	0	0	0.056	0.2	0.086	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PCOLCE2	-	-	-	-	-	-	-	-	-	-	-	-	
+3;169780342;C>T	0.3	0.2	0.333	0.129	0.316	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	GPR160	-	-	-	-	-	-	-	-	-	-	-	-	
+3;169820403;C>T	0.303	0.212	0.39	0.157	0.398	0.416742730473	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant	LOW	PHC3	ENST00000495893	14/15	ENST00000495893.2:c.2697G>A	ENST00000495893.2:c.2697G>A(p.%3D)	2729	2697	899	E	gaG/gaA	SNV			
+3;170109112;CT>C,CTT	0.115	0.1	0.1	0.083	0.214	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	SKIL,SKIL	-	-	-	-	-	-	-	-	-	-	-	-	
+3;171844996;T>A	0.333	0.306	0.25	0.208	0.534	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FNDC3B	-	-	-	-	-	-	-	-	-	-	-	-	
+3;185985706;CGT>C	0	0	0	0.088	0.065	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DGKG	-	-	-	-	-	-	-	-	-	-	-	-	
+4;15937508;C>T	0	0.269	0	0.17	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	FGFBP1	-	-	-	-	-	-	-	-	-	-	-	-	
+4;36310050;G>A	0	0	0	0	0.11	0	NA	NA	NA	NA	NA	NA	NA	0	Q20	missense_variant|downstream_gene_variant|	MODERATE|MODIFIER|	DTHD1|RP11-431M7.2|	ENST00000456874|ENST00000504344|	6/9||	ENST00000456874.2:c.1655G>A||	ENSP00000401597.2:p.Arg552His||	1713||	1655||	552||	R/H||	cGt/cAt||	SNV|SNV|	tolerated(0.09)||	benign(0.003)||	
+4;39436432;CT>C,CTT	0.099	0.064	0	0.216	0.065	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	KLB,KLB	-	-	-	-	-	-	-	-	-	-	-	-	
+4;55565782;T>C	0	0.09	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	KIT	-	-	-	-	-	-	-	-	-	-	-	-	
+4;62362817;CT>C	0.286	0.1	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	LPHN3	-	-	-	-	-	-	-	-	-	-	-	-	
+4;69111329;C>T	0	0	0	0	0.092	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	TMPRSS11B	-	-	-	-	-	-	-	-	-	-	-	-	
+4;86938317;CGT>C	0.111	0	0.087	0.133	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	MAPK10	-	-	-	-	-	-	-	-	-	-	-	-	
+4;91563250;G>A	0	0.266	0	0.161	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FAM190A	-	-	-	-	-	-	-	-	-	-	-	-	
+4;110929468;CCA>C	0	0.053	0.074	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	EGF	-	-	-	-	-	-	-	-	-	-	-	-	
+4;111436388;A>G	0.367	0.152	0.487	0.22	0.292	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	RP11-380D23.1,ENPEP	-	-	-	-	-	-	-	-	-	-	-	-	
+4;115767110;A>G	0.293	0.217	0.341	0.139	0.277	0.421710328214	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	NDST4	ENST00000264363	10/14	ENST00000264363.2:c.1984T>C	ENSP00000264363.2:p.Phe662Leu	2663	1984	662	F/L	Ttt/Ctt	SNV	tolerated(0.2)	benign(0.002)	
+4;117519837;A>G	0	0	0	0	0.118	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+4;117520004;G>A	0.262	0.2	0.375	0.153	0.309	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+4;164467113;G>A	0	0	0.167	0.154	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MARCH1	-	-	-	-	-	-	-	-	-	-	-	-	
+4;190202911;C>T	0.485	0.311	0.609	0.25	0.364	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+5;1266698;G>A	0.374	0.319	0.398	0.132	0.414	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	TERT	-	-	-	-	-	-	-	-	-	-	-	-	
+5;4095405;G>A	0.058	0	0.116	0.073	0.052	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+5;5955001;CCCTTCT>TCCTTCC,TCCTTCT	0.148	0.111	0.2	0.188	0.182	NA	NA	NA	NA	NA	NA	NA	NA	175	SC,HapScore																
+5;5955020;CTCCTTCT>TTCCTTCT,TTCCTTTC	0.143	0.12	0	0.125	0.083	NA	NA	NA	NA	NA	NA	NA	NA	277	SC,HapScore																
+5;13810366;G>A	0.147	0	0	0	0.222	0	0	NA	0.199288256228	0	0	0.220221606648	0.060620756547	0	Q20,QD	stop_gained	HIGH	DNAH5	ENST00000265104	45/79	ENST00000265104.4:c.7411C>T	ENSP00000265104.4:p.Gln2471Ter	7516	7411	2471	Q/*	Caa/Taa	SNV			
+5;19503157;A>G	0.315	0.253	0.422	0.163	0.317	0.393871330018	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	CDH18	ENST00000507958	13/15	ENST00000507958.1:c.1574T>C	ENSP00000425093.1:p.Phe525Ser	2565	1574	525	F/S	tTc/tCc	SNV	deleterious(0)	possibly_damaging(0.511)	
+5;38924589;A>G	0.136	0	0	0	0.145	0.00210498618603	0	0	0.12275862069	0.0059585492228	0	0.135593220339	0.0478994895956	0	Q20,QD	missense_variant	MODERATE	OSMR	ENST00000274276	14/18	ENST00000274276.3:c.1936A>G	ENSP00000274276.3:p.Lys646Glu	2338	1936	646	K/E	Aaa/Gaa	SNV	tolerated(0.31)	benign(0.006)	
+5;52160871;G>A	0.121	0	0.391	0	0	0.371600784973	0	0	0.127702978376	0.436386768448	0	0	0	2962		missense_variant	MODERATE	ITGA1	ENST00000282588	5/29	ENST00000282588.6:c.451G>A	ENSP00000282588.5:p.Val151Ile	909	451	151	V/I	Gtc/Atc	SNV	tolerated(0.14)	possibly_damaging(0.737)	
+5;60170512;TAA>TAAA,TA,T	0.171	0.123	0.075	0.314	0.269	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant|splice_region_variant,intron_variant|splice_region_variant,intron_variant|splice_region_variant	-	ERCC8,ERCC8,ERCC8	-	-	-	-	-	-	-	-	-	-	-	-	
+5;67591092;G>C	0.157	0	0	0	0.164	0	0	0	0.129695251595	0	0	0.173147769136	0.0389189189189	0	Q20	missense_variant	MODERATE	PIK3R1	ENST00000521381	13/16	ENST00000521381.1:c.1685G>C	ENSP00000428056.1:p.Arg562Pro	2301	1685	562	R/P	cGt/cCt	SNV	deleterious(0)	possibly_damaging(0.894)	
+5;80422732;G>C	0.157	0	0	0	0.127	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RASGRF2	-	-	-	-	-	-	-	-	-	-	-	-	
+5;90000108;T>G	0.324	0.243	0.333	0.115	0.263	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GPR98	-	-	-	-	-	-	-	-	-	-	-	-	
+5;102484797;TAC>T	0	0	0	0	0.071	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PPIP5K2	-	-	-	-	-	-	-	-	-	-	-	-	
+5;150077836;T>G	0	0.231	0	0.273	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RBM22	-	-	-	-	-	-	-	-	-	-	-	-	
+5;156715505;G>A	0	0	0	0	0.162	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CYFIP2	-	-	-	-	-	-	-	-	-	-	-	-	
+5;160114720;C>T	0.148	0	0.204	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ATP10B	-	-	-	-	-	-	-	-	-	-	-	-	
+5;176297468;C>T	0.33	0.262	0.386	0.143	0.404	0.44494892168	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant	LOW	UNC5A	ENST00000329542	6/15	ENST00000329542.4:c.819C>T	ENST00000329542.4:c.819C>T(p.%3D)	1093	819	273	N	aaC/aaT	SNV			
+6;7582770;CT>C	0	0	0.158	0.077	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DSP	-	-	-	-	-	-	-	-	-	-	-	-	
+6;29230361;G>A	0.286	0.326	0.543	0.196	0.323	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+6;29298530;G>A	0.286	0.308	0.346	0.3	0.25	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+6;29536195;TTCTTCT>CTCTTCT,CTCTTCC	0.333	0.182	0.5	0.308	0.5	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.,.	-	.,.	-	-	-	-	-	-	-	-	-	-	-	-	
+6;31624922;CA>CAA,C	0.148	0.1	0.105	0.15	0.281	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	APOM,APOM	-	-	-	-	-	-	-	-	-	-	-	-	
+6;32520594;AG>GA	0.385	0.308	0.533	0.286	0.4	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+6;32710363;GCTA>G	0	0.063	0.065	0.109	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	HLA-DQA2	-	-	-	-	-	-	-	-	-	-	-	-	
+6;33047412;GCAA>G	0.081	0	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant,intron_variant	-	HLA-DPA1,HLA-DPB1	-	-	-	-	-	-	-	-	-	-	-	-	
+6;36712704;C>T	0	0	0	0	0.143	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CPNE5	-	-	-	-	-	-	-	-	-	-	-	-	
+6;39046776;C>T	0.169	0	0	0	0.226	0.000964320154291	0.00036624670378	0	0.153743800653	0.00254452926209	0	0.15774708675	0.0318975552969	0	Q20,QD	missense_variant	MODERATE	GLP1R	ENST00000373256	9/13	ENST00000373256.4:c.928C>T	ENSP00000362353.4:p.Arg310Trp	971	928	310	R/W	Cgg/Tgg	SNV	deleterious(0)	probably_damaging(0.984)	
+6;43469389;G>A	0.3	0.182	0.524	0.143	0.308	0.478984238179	NA	NA	NA	NA	NA	NA	NA	2962	badReads	missense_variant	MODERATE	TJAP1	ENST00000372445	6/11	ENST00000372445.5:c.254G>A	ENSP00000361522.5:p.Arg85His	630	254	85	R/H	cGc/cAc	SNV	deleterious(0.01)	probably_damaging(0.993)	
+6;47791452;G>T	0	0.333	0	0.4	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	OPN5	-	-	-	-	-	-	-	-	-	-	-	-	
+6;49667609;A>G	0.353	0.213	0.479	0.178	0.362	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant|splice_region_variant	-	CRISP2	-	-	-	-	-	-	-	-	-	-	-	-	
+6;70980090;C>T	0	0.086	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL9A1	-	-	-	-	-	-	-	-	-	-	-	-	
+6;73951293;T>C	0	0	0	0	0.093	0.000705218617772	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	intron_variant&NMD_transcript_variant|missense_variant|	MODIFIER|MODERATE|	RP11-257K9.8|KHDC1|	ENST00000423730|ENST00000370384|	|5/5|	ENST00000423730.3:c.295+485A>G|ENST00000370384.3:c.673A>G|	|ENSP00000359411.3:p.Ile225Val|	|1174|	|673|	|225|	|I/V|	|Att/Gtt|	SNV|SNV|	|tolerated_low_confidence(0.27)|	|benign(0.013)|	
+6;73951307;G>A	0	0	0	0	0.121	0	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	intron_variant&NMD_transcript_variant|missense_variant|	MODIFIER|MODERATE|	RP11-257K9.8|KHDC1|	ENST00000423730|ENST00000370384|	|5/5|	ENST00000423730.3:c.295+471C>T|ENST00000370384.3:c.659C>T|	|ENSP00000359411.3:p.Ser220Phe|	|1160|	|659|	|220|	|S/F|	|tCc/tTc|	SNV|SNV|	|tolerated_low_confidence(0.43)|	|probably_damaging(0.919)|	
+6;102130314;G>T	0.37	0.381	0.452	0.221	0.326	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GRIK2	-	-	-	-	-	-	-	-	-	-	-	-	
+6;117203502;C>T	0.283	0.205	0.401	0.17	0.329	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RFX6	-	-	-	-	-	-	-	-	-	-	-	-	
+6;129932915;C>A	0.128	0	0	0	0.067	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ARHGAP18	-	-	-	-	-	-	-	-	-	-	-	-	
+6;130031270;G>GAGCC	0.219	0.237	0.448	0.122	0.25	0.341937897493	NA	NA	NA	NA	NA	NA	NA	2964		frameshift_variant	HIGH	ARHGAP18	ENST00000368149	1/15	ENST00000368149.2:c.8_11dupGGCT	ENSP00000357131.2:p.Ser5AlafsTer59	100-101	11-12	4	L/LAX	ctc/ctGGCTc	insertion			
+6;142723974;AT>A	0.097	0.176	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GPR126	-	-	-	-	-	-	-	-	-	-	-	-	
+6;153603836;A>G	0.18	0	0	0	0.2	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	AL590867.1	-	-	-	-	-	-	-	-	-	-	-	-	
+6;159653247;C>T	0	0.117	0	0.103	0	0	0	0.0865800865801	0.00572618427902	0	0.226086956522	0.00846740050804	0.249290444655	0	Q20,QD	missense_variant	MODERATE	FNDC1	ENST00000297267	11/23	ENST00000297267.9:c.1703C>T	ENSP00000297267.9:p.Pro568Leu	1903	1703	568	P/L	cCg/cTg	SNV	tolerated_low_confidence(0.16)	unknown(0)	
+7;14797180;TAC>T	0	0.067	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DGKB	-	-	-	-	-	-	-	-	-	-	-	-	
+7;18914031;G>A	0.181	0.194	0.281	0.254	0.307	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	HDAC9	-	-	-	-	-	-	-	-	-	-	-	-	
+7;43360612;CT>C	0	0	0	0.158	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	HECW1	-	-	-	-	-	-	-	-	-	-	-	-	
+7;50173973;AATAT>A,AAT	0.067	0.174	0.08	0	0.143	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	C7orf72,C7orf72	-	-	-	-	-	-	-	-	-	-	-	-	
+7;53104337;G>A	0	0	0	0	0.085	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	POM121L12	-	-	-	-	-	-	-	-	-	-	-	-	
+7;55220274;C>T	0.134	0	0.296	0	0	0.419145856462	0	0	0.182790380829	0.351576541377	0	0.000194376952447	0.000322056681976	2962		missense_variant	MODERATE	EGFR	ENST00000275493	6/28	ENST00000275493.2:c.664C>T	ENSP00000275493.2:p.Arg222Cys	841	664	222	R/C	Cgc/Tgc	SNV	deleterious(0)	probably_damaging(1)	
+7;69065039;GCTGT>G	0	0	0.067	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	AUTS2	-	-	-	-	-	-	-	-	-	-	-	-	
+7;96279996;GCACA>GCACACA,GCA,G	0	0	0	0	0.087	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.,.,.	-	.,.,.	-	-	-	-	-	-	-	-	-	-	-	-	
+7;102967731;GAA>GAAA,GA,G	0.289	0.225	0.146	0.129	0.24	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	DNAJC2,DNAJC2,DNAJC2	-	-	-	-	-	-	-	-	-	-	-	-	
+7;113521967;C>G	0.235	0.141	0.293	0.173	0.245	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PPP1R3A	-	-	-	-	-	-	-	-	-	-	-	-	
+7;115857808;A>T	0.073	0	0	0	0.12	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	TES	-	-	-	-	-	-	-	-	-	-	-	-	
+7;119206569;T>C	0.261	0.173	0.375	0.103	0.154	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+7;122788564;A>T	0.092	0	0	0	0.144	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SLC13A1	-	-	-	-	-	-	-	-	-	-	-	-	
+7;128525196;C>T	0	0	0	0	0.137	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+7;149525083;CCGAACCCCCTCTGCTACCACTCACCCATTCCTGA>C	0	0	0	0	0.051	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+7;150648872;G>A	0.11	0	0	0	0	0	0	0	0.121870491386	0.0019298245614	0	0.13177410154	0.0288642789821	0	Q20,QD	missense_variant	MODERATE	KCNH2	ENST00000262186	7/15	ENST00000262186.5:c.1609C>T	ENSP00000262186.5:p.Arg537Trp	2011	1609	537	R/W	Cgg/Tgg	SNV	deleterious(0)	probably_damaging(0.999)	
+7;155095686;CTTTTTTT>C,CT,CTT,CTTT	0.094	0.051	0.065	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant,intron_variant	-	INSIG1,INSIG1,INSIG1,INSIG1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;17400726;AAC>A	0.059	0	0.167	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SLC7A2	-	-	-	-	-	-	-	-	-	-	-	-	
+8;23152449;CGT>C	0.25	0	0	0.3	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	R3HCC1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;35624323;GTCA>G	0	0.095	0	0	0.1	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	UNC5D	-	-	-	-	-	-	-	-	-	-	-	-	
+8;42403876;C>T	0	0	0	0	0.115	0	0	0	0	0	0	0.086743772242	0	0	Q20,QD	missense_variant	MODERATE	SMIM19	ENST00000438528	3/4	ENST00000438528.3:c.212C>T	ENSP00000391549.2:p.Thr71Met	261	212	71	T/M	aCg/aTg	SNV	deleterious(0.01)	possibly_damaging(0.736)	
+8;49831217;GGT>G,GGTGT	0.141	0.08	0.057	0.075	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant,3_prime_UTR_variant	-	SNAI2,SNAI2	-	-	-	-	-	-	-	-	-	-	-	-	
+8;75157416;CA>CAA,C	0	0	0	0	0.066	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant|splice_region_variant,intron_variant|splice_region_variant	-	JPH1,JPH1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;86388035;C>T	0.286	0.23	0.47	0.193	0.394	0.399517535721	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant	LOW	CA2	ENST00000285379	5/7	ENST00000285379.5:c.453C>T	ENST00000285379.5:c.453C>T(p.%3D)	683	453	151	S	agC/agT	SNV			
+8;89621225;G>A	0.375	0.348	0.5	0.13	0.5	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+8;102643814;A>G	0.2	0.154	0.333	0.198	0.257	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GRHL2	-	-	-	-	-	-	-	-	-	-	-	-	
+8;105152732;C>G	0.161	0	0	0	0.185	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RIMS2	-	-	-	-	-	-	-	-	-	-	-	-	
+8;121648290;CT>C,CTT	0.364	0.178	0.344	0.265	0.243	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	SNTB1,SNTB1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;139736702;G>C	0.179	0	0	0	0.175	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL22A1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;139790427;T>C	0	0	0	0	0.213	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL22A1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;144296854;G>T	0.411	0.306	0.4	0.094	0.367	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GPIHBP1	-	-	-	-	-	-	-	-	-	-	-	-	
+8;144942124;G>A	0.16	0	0	0	0.331	0	NA	NA	NA	NA	NA	NA	NA	0	Q20	synonymous_variant	LOW	EPPK1	ENST00000525985	2/2	ENST00000525985.1:c.5298C>T	ENST00000525985.1:c.5298C>T(p.%3D)	5370	5298	1766	Y	taC/taT	SNV			
+9;429922;G>GA	0.077	0	0.5	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DOCK8	-	-	-	-	-	-	-	-	-	-	-	-	
+9;6558446;C>T	0.65	0.538	0.667	0.417	0.643	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GLDC	-	-	-	-	-	-	-	-	-	-	-	-	
+9;74674086;C>T	0.176	0	0	0	0.162	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	C9orf57	-	-	-	-	-	-	-	-	-	-	-	-	
+9;86004828;AAC>A	0.07	0.068	0	0	0.1	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FRMD3	-	-	-	-	-	-	-	-	-	-	-	-	
+9;88593058;T>G	0.098	0	0	0	0.148	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NAA35	-	-	-	-	-	-	-	-	-	-	-	-	
+9;88593077;T>A	0.116	0	0	0	0.145	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NAA35	-	-	-	-	-	-	-	-	-	-	-	-	
+9;88601501;C>T	0.175	0	0.345	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NAA35	-	-	-	-	-	-	-	-	-	-	-	-	
+9;112142144;G>A	0.3	0.296	0.324	0.214	0.303	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PTPN3	-	-	-	-	-	-	-	-	-	-	-	-	
+10;18808561;T>A	0.274	0	0	0	0.171	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CACNB2	-	-	-	-	-	-	-	-	-	-	-	-	
+10;22616896;GAAGA>G	0.068	0	0.662	0	0	0.588772845953	NA	NA	NA	NA	NA	NA	NA	2944		upstream_gene_variant|frameshift_variant|frameshift_variant|downstream_gene_variant|	MODIFIER|HIGH|HIGH|MODIFIER|	RP11-573G6.9|COMMD3-BMI1|BMI1|RP11-573G6.8|	ENST00000606988|ENST00000602390|ENST00000376663|ENST00000607282|	|10/14|6/10||	|ENST00000602390.1:c.764_767delAAGA|ENST00000376663.3:c.335_338delAAGA||	|ENSP00000473391.1:p.Glu255ValfsTer13|ENSP00000365851.3:p.Glu112ValfsTer13||	|773-776|840-843||	|764-767|335-338||	|255-256|112-113||	|ED/X|ED/X||	|gAAGAt/gt|gAAGAt/gt||	deletion|deletion|deletion|deletion|	||||	||||	
+10;30638207;CT>C	0	0	0	0.273	0.067	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	MTPAP	-	-	-	-	-	-	-	-	-	-	-	-	
+10;49633873;T>TACAAGAATACATTCTTGTAA	0	0.077	0.067	0.095	0.103	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MAPK8	-	-	-	-	-	-	-	-	-	-	-	-	
+10;49633876;GACT>G	0	0.081	0.063	0.095	0.121	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MAPK8	-	-	-	-	-	-	-	-	-	-	-	-	
+10;55570255;G>A	0	0.345	0	0.162	0.055	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+10;59101270;A>G	0.476	0	0	0	0.214	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+10;92676187;ATG>A	0.136	0	0.091	0.118	0.217	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ANKRD1	-	-	-	-	-	-	-	-	-	-	-	-	
+10;120489601;C>A	0.15	0	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	C10orf46	-	-	-	-	-	-	-	-	-	-	-	-	
+10;131666241;G>A	0.533	0.364	0.724	0.316	0.563	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	EBF3	-	-	-	-	-	-	-	-	-	-	-	-	
+11;12499559;G>A	0.363	0.22	0.47	0.186	0.305	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PARVA	-	-	-	-	-	-	-	-	-	-	-	-	
+11;15098969;G>A	0	0.179	0	0.123	0	0	0.000507270882651	0.0193548387097	0.000605082694635	0.00234055002926	0.188524590164	0.036498817168	0.218788627936	0	Q20,QD	missense_variant	MODERATE	CALCB	ENST00000533448	4/5	ENST00000533448.1:c.362G>A	ENSP00000433490.1:p.Arg121His	473	362	121	R/H	cGc/cAc	SNV	tolerated(0.12)	benign(0.391)	
+11;25004778;G>A	0.149	0	0	0	0.179	0.000493096646943	0	0	0.103586321935	0	0	0.109201575367	0.0272229096694	0	Q20	missense_variant	MODERATE	LUZP2	ENST00000336930	9/12	ENST00000336930.6:c.704G>A	ENSP00000336817.6:p.Arg235Gln	770	704	235	R/Q	cGg/cAg	SNV	tolerated(1)	benign(0.001)	
+11;31128484;CCTTTGATGAATCTTGAGAAGT>C	0	0.205	0	0.096	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+11;48157541;G>A	0.176	0.208	0.4	0.158	0.261	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PTPRJ	-	-	-	-	-	-	-	-	-	-	-	-	
+11;56064951;G>A	0.323	0.24	0.354	0.149	0.318	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+11;58133600;C>T	0	0.225	0	0.18	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+11;62519422;TA>TAA,T	0.235	0	0.125	0.2	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant,3_prime_UTR_variant	-	ZBTB3,ZBTB3	-	-	-	-	-	-	-	-	-	-	-	-	
+11;67048143;C>T	0	0.259	0	0.12	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ADRBK1	-	-	-	-	-	-	-	-	-	-	-	-	
+11;77396033;G>GAAAT,GAAATAAAT	0.324	0.171	0.304	0.286	0.318	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	RSF1,RSF1	-	-	-	-	-	-	-	-	-	-	-	-	
+11;86108901;CT>C,CTT	0.073	0	0	0.133	0.05	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	CCDC81,CCDC81	-	-	-	-	-	-	-	-	-	-	-	-	
+11;102707454;G>A	0	0.221	0	0.226	0.06	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MMP3	-	-	-	-	-	-	-	-	-	-	-	-	
+11;108014945;CA>AA,C	0.174	0.143	0.214	0.067	0.154	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	ACAT1,ACAT1	-	-	-	-	-	-	-	-	-	-	-	-	
+11;119024463;C>T	0.323	0.202	0.469	0.155	0.284	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ABCG4	-	-	-	-	-	-	-	-	-	-	-	-	
+11;134151364;CCCTGGT>AACTGGC,AACTGGT,ACCTGGT	0.243	0.222	0.167	0.111	0.192	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	GLB1L3,GLB1L3,GLB1L3	-	-	-	-	-	-	-	-	-	-	-	-	
+12;5603750;G>A	0	0.286	0	0.126	0	0	0	0.0467091295117	0	0	0.18804664723	0.0187624750499	0.16091954023	0	Q20,QD	missense_variant	MODERATE	NTF3	ENST00000423158	2/2	ENST00000423158.3:c.409G>A	ENSP00000397297.2:p.Val137Met	621	409	137	V/M	Gtg/Atg	SNV	tolerated(0.1)	benign(0.003)	
+12;7585954;C>G	0.357	0.231	0.421	0.152	0.359	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CD163L1	-	-	-	-	-	-	-	-	-	-	-	-	
+12;8234869;C>G	0.182	0	0	0	0.15	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	NECAP1	-	-	-	-	-	-	-	-	-	-	-	-	
+12;10658439;G>A	0	0	0	0	0.158	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+12;18467043;T>A	0.286	0.262	0.4	0.281	0.353	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PIK3C2G	-	-	-	-	-	-	-	-	-	-	-	-	
+12;21329918;A>T	0.093	0	0.313	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SLCO1B1	-	-	-	-	-	-	-	-	-	-	-	-	
+12;27540087;ATG>A	0	0.103	0	0.057	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ARNTL2	-	-	-	-	-	-	-	-	-	-	-	-	
+12;38860563;G>A	0.133	0.333	0	0.214	0.235	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+12;43769273;C>A	0.311	0.236	0.444	0.129	0.278	0.410593278938	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	ADAMTS20	ENST00000389420	36/39	ENST00000389420.3:c.5355G>T	ENSP00000374071.3:p.Arg1785Ser	5355	5355	1785	R/S	agG/agT	SNV	tolerated(0.05)	probably_damaging(0.948)	
+12;48165994;C>T	0.161	0	0	0	0.255	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+12;49397299;C>A	0	0	0	0	0.165	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PRKAG1	-	-	-	-	-	-	-	-	-	-	-	-	
+12;51068149;GC>G	0	0	0.086	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DIP2B	-	-	-	-	-	-	-	-	-	-	-	-	
+12;51118445;G>C	0	0.333	0	0.154	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DIP2B	-	-	-	-	-	-	-	-	-	-	-	-	
+12;53509947;C>T	0.269	0.258	0.401	0.141	0.364	0.362580645161	NA	NA	NA	NA	NA	NA	NA	2962		stop_gained	HIGH	SOAT2	ENST00000301466	7/15	ENST00000301466.3:c.775C>T	ENSP00000301466.3:p.Arg259Ter	835	775	259	R/*	Cga/Tga	SNV			
+12;53673630;G>A	0.162	0	0	0	0.163	0.00702370500439	0	0	0.172700296736	0	0	0.148299319728	0.0332103321033	0	Q20,QD	missense_variant	MODERATE	ESPL1	ENST00000257934	12/31	ENST00000257934.4:c.2479G>A	ENSP00000257934.4:p.Gly827Ser	2570	2479	827	G/S	Ggc/Agc	SNV	tolerated(0.21)	benign(0.135)	
+12;53819724;ATG>A	0	0	0.083	0.088	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	AMHR2	-	-	-	-	-	-	-	-	-	-	-	-	
+12;57978895;CT>C	0.103	0.061	0.063	0	0.19	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	KIF5A	-	-	-	-	-	-	-	-	-	-	-	-	
+12;58220056;G>T	0	0.314	0	0.258	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CTDSP2	-	-	-	-	-	-	-	-	-	-	-	-	
+12;68646870;GA>GAA,G	0.243	0	0.08	0.065	0.095	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	IL22,IL22	-	-	-	-	-	-	-	-	-	-	-	-	
+12;72090411;GT>G	0	0	0.053	0.143	0.333	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	TMEM19	-	-	-	-	-	-	-	-	-	-	-	-	
+12;80818280;C>T	0.335	0.3	0.536	0.162	0.374	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+12;81026244;G>A	0	0.231	0	0.127	0.055	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PTPRQ	-	-	-	-	-	-	-	-	-	-	-	-	
+12;102572368;A>C	0	0	0.362	0	0	0.314643440392	NA	NA	NA	NA	NA	NA	NA	2962		splice_acceptor_variant	HIGH	PARPBP	ENST00000358383		ENST00000358383.5:c.1006-2A>C							SNV			
+12;102813478;T>C	0.237	0.294	0.407	0.164	0.221	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	IGF1	-	-	-	-	-	-	-	-	-	-	-	-	
+12;112130644;C>T	0.279	0.195	0.529	0.139	0.298	0.414437965011	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	ACAD10	ENST00000455480	2/22	ENST00000455480.2:c.131C>T	ENSP00000389813.2:p.Ala44Val	308	131	44	A/V	gCg/gTg	SNV	deleterious(0.01)	probably_damaging(0.994)	
+12;119917077;C>A	0	0.194	0	0.236	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CCDC60	-	-	-	-	-	-	-	-	-	-	-	-	
+12;129411528;T>A	0	0	0	0	0.244	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GLT1D1	-	-	-	-	-	-	-	-	-	-	-	-	
+13;73349918;CA>CAA,C	0.081	0	0	0.188	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	DIS3,DIS3	-	-	-	-	-	-	-	-	-	-	-	-	
+13;99099004;G>A	0	0.071	0	0	0	0.00238142488589	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	missense_variant	MODERATE	FARP1	ENST00000319562	26/27	ENST00000319562.6:c.2989G>A	ENSP00000322926.6:p.Val997Met	3254	2989	997	V/M	Gtg/Atg	SNV	deleterious(0)	probably_damaging(0.998)	
+13;109792620;C>T	0.326	0.294	0.354	0.132	0.455	0.526315789474	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	MYO16	ENST00000356711	32/35	ENST00000356711.2:c.3994C>T	ENSP00000349145.2:p.Arg1332Trp	4120	3994	1332	R/W	Cgg/Tgg	SNV	deleterious(0.04)	probably_damaging(0.983)	
+14;21250123;C>G	0.153	0	0	0	0.234	0	0	0	0.132469703301	0	0	0.131898572342	0.0404329181131	0	Q20	missense_variant|upstream_gene_variant|	MODERATE|MODIFIER|	RNASE6|RP11-219E7.1|	ENST00000304677|ENST00000556624|	2/2||	ENST00000304677.2:c.265C>G||	ENSP00000302046.2:p.Arg89Gly||	558||	265||	89||	R/G||	Cgg/Ggg||	SNV|SNV|	tolerated(0.26)||	benign(0.272)||	
+14;22005214;ACT>A	0	0	0	0.088	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant	-	SALL2	-	-	-	-	-	-	-	-	-	-	-	-	
+14;22133666;G>A	0.341	0.281	0.458	0.175	0.379	0.411937665393	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant|downstream_gene_variant|	MODERATE|MODIFIER|	OR4E2|OR4E1|	ENST00000408935|ENST00000413808|	1/1||	ENST00000408935.1:c.370G>A||	ENSP00000386195.1:p.Val124Met||	370||	370||	124||	V/M||	Gtg/Atg||	SNV|SNV|	deleterious(0.02)||	benign(0.223)||	
+14;23416518;A>ACT	0	0	0	0.064	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	HAUS4,RP11-298I3.5	-	-	-	-	-	-	-	-	-	-	-	-	
+14;23416521;A>G	0	0	0.051	0.061	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	HAUS4,RP11-298I3.5	-	-	-	-	-	-	-	-	-	-	-	-	
+14;23738294;A>T	0.144	0	0	0	0.191	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	C14orf164	-	-	-	-	-	-	-	-	-	-	-	-	
+14;77319806;T>G	0.077	0.111	0	0.075	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	C14orf166B	-	-	-	-	-	-	-	-	-	-	-	-	
+14;81743416;C>T	0.368	0.27	0.392	0.154	0.368	0.376844262295	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	STON2	ENST00000555447	6/8	ENST00000555447.1:c.2239G>A	ENSP00000450857.1:p.Val747Ile	2652	2239	747	V/I	Gtc/Atc	SNV	deleterious(0.03)	possibly_damaging(0.792)	
+14;96778633;C>G	0	0	0	0	0.096	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ATG2B	-	-	-	-	-	-	-	-	-	-	-	-	
+15;42167515;G>A	0.222	0.19	0.318	0.3	0.227	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SPTBN5	-	-	-	-	-	-	-	-	-	-	-	-	
+15;52659363;G>C	0	0	0	0	0.137	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MYO5A	-	-	-	-	-	-	-	-	-	-	-	-	
+15;58974349;GA>GAA,G	0.154	0.105	0.074	0.105	0.143	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	ADAM10,ADAM10	-	-	-	-	-	-	-	-	-	-	-	-	
+15;75111156;C>T	0	0.298	0	0.138	0	0	0	0	0	0.0106232294618	0.224904701398	0.00879120879121	0.255116748342	0	Q20,QD	upstream_gene_variant|missense_variant&splice_region_variant|	MODIFIER|MODERATE|	RP11-414J4.2|LMAN1L|	ENST00000564823|ENST00000309664|	|5/14|	|ENST00000309664.5:c.595C>T|	|ENSP00000310431.5:p.Arg199Cys|	|734|	|595|	|199|	|R/C|	|Cgc/Tgc|	SNV|SNV|	|deleterious(0.03)|	|possibly_damaging(0.459)|	
+15;81427705;CT>C,CTT	0.135	0.131	0.119	0.255	0.128	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	C15orf26,C15orf26	-	-	-	-	-	-	-	-	-	-	-	-	
+15;94901832;G>A	0	0.16	0	0.131	0	0.000761614623001	0	0	0	0	0.162790697674	0.0203836930456	0.196956646569	0	Q20,QD	missense_variant	MODERATE	MCTP2	ENST00000357742	9/22	ENST00000357742.4:c.1292G>A	ENSP00000350377.4:p.Arg431His	1292	1292	431	R/H	cGt/cAt	SNV	tolerated(0.49)	possibly_damaging(0.806)	
+15;99024098;C>T	0.328	0.256	0.422	0.188	0.326	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FAM169B	-	-	-	-	-	-	-	-	-	-	-	-	
+16;114941;G>A	0	0.182	0	0.219	0	0	0	0	0	0	0.150960658737	0.0150046168052	0.209367945824	0	Q20,QD	missense_variant	MODERATE	RHBDF1	ENST00000262316	2/18	ENST00000262316.6:c.73C>T	ENSP00000262316.5:p.Pro25Ser	216	73	25	P/S	Ccc/Tcc	SNV	deleterious(0.01)	probably_damaging(0.998)	
+16;3023615;TCTCA>T	0.167	0.455	0.421	0.182	0.522	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PKMYT1	-	-	-	-	-	-	-	-	-	-	-	-	
+16;3529763;CTG>C	0.054	0	0	0.167	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NAA60	-	-	-	-	-	-	-	-	-	-	-	-	
+16;4829737;G>A	0.207	0.316	0.427	0.156	0.373	0.415910857735	NA	NA	NA	NA	NA	NA	NA	2962	badReads	synonymous_variant	LOW	SEPT12	ENST00000268231	8/10	ENST00000268231.8:c.777C>T	ENST00000268231.8:c.777C>T(p.%3D)	1041	777	259	N	aaC/aaT	SNV			
+16;20781190;GCAGC>ACAGA,ACAGC	0.355	0.208	0.409	0.385	0.438	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant,5_prime_UTR_variant	-	ACSM3,ACSM3	-	-	-	-	-	-	-	-	-	-	-	-	
+16;24564879;GTA>G	0.211	0.165	0.093	0.087	0.135	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	RBBP6	-	-	-	-	-	-	-	-	-	-	-	-	
+16;57992228;AG>A	0	0	0.064	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CNGB1	-	-	-	-	-	-	-	-	-	-	-	-	
+16;72822563;TTGC>T	0.073	0	0	0.063	0	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	upstream_gene_variant|downstream_gene_variant|inframe_deletion|upstream_gene_variant|	MODIFIER|MODIFIER|MODERATE|MODIFIER|	RP5-991G20.4|RP5-991G20.1|ZFHX3|AC004943.1|	ENST00000569195|ENST00000563328|ENST00000268489|ENST00000584072|	||10/10||	||ENST00000268489.5:c.9609_9611delGCA||	||ENSP00000268489.5:p.Gln3204del||	||10282-10284||	||9609-9611||	||3203-3204||	||QQ/Q||	||caGCAa/caa||	deletion|deletion|deletion|deletion|	||||	||||	
+16;81960613;G>A	0.286	0.233	0.474	0.235	0.321	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	PLCG2	-	-	-	-	-	-	-	-	-	-	-	-	
+16;89828992;GAAAAAAG>AAAAAAAA	0.091	0.138	0.053	0.083	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FANCA	-	-	-	-	-	-	-	-	-	-	-	-	
+17;2597659;G>A	0.214	0	0	0	0.159	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	KIAA0664	-	-	-	-	-	-	-	-	-	-	-	-	
+17;2651726;CTG>C	0.227	0.083	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+17;3853830;T>C	0	0.258	0	0.168	0	0	0.00168255748738	0.0859598853868	0	0	0.160526315789	0.0325047801147	0.216535433071	0	Q20	missense_variant	MODERATE	ATP2A3	ENST00000359983	7/23	ENST00000359983.3:c.605A>G	ENSP00000353072.3:p.Gln202Arg	605	605	202	Q/R	cAg/cGg	SNV	deleterious(0)	possibly_damaging(0.469)	
+17;8249055;C>T	0.377	0.209	0.443	0.183	0.316	0.408947240457	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	ODF4	ENST00000328248	3/3	ENST00000328248.2:c.659C>T	ENSP00000331086.2:p.Ser220Phe	847	659	220	S/F	tCc/tTc	SNV	tolerated(0.75)	benign(0.002)	
+17;9821251;G>A	0	0	0	0	0.333	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GAS7	-	-	-	-	-	-	-	-	-	-	-	-	
+17;26101214;GCA>G	0.077	0	0	0.069	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NOS2	-	-	-	-	-	-	-	-	-	-	-	-	
+17;27620776;C>T	0.167	0.083	0	0.05	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NUFIP2	-	-	-	-	-	-	-	-	-	-	-	-	
+17;29635163;CT>C,CTT	0.053	0	0.107	0	0.167	NA	NA	NA	NA	NA	NA	NA	NA	-	-	5_prime_UTR_variant,intron_variant,5_prime_UTR_variant,intron_variant	-	EVI2B,NF1,EVI2B,NF1	-	-	-	-	-	-	-	-	-	-	-	-	
+17;30469391;C>T	0	0.25	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	missense_variant|upstream_gene_variant|	MODERATE|MODIFIER|	AC090616.2|RHOT1|	ENST00000398832|ENST00000358365|	2/2||	ENST00000398832.2:c.347G>A||	ENSP00000381813.2:p.Gly116Asp||	453||	347||	116||	G/D||	gGc/gAc||	SNV|SNV|	tolerated_low_confidence(0.25)||	probably_damaging(0.97)||	
+17;32957133;T>C	0	0	0.296	0	0	0.188341750842	0	0	0.0110377451463	0.232980332829	0	0.000874431619447	0	2962	alleleBias	missense_variant	MODERATE	TMEM132E	ENST00000321639	6/10	ENST00000321639.5:c.1175T>C	ENSP00000316532.5:p.Leu392Pro	1503	1175	392	L/P	cTa/cCa	SNV	tolerated(0.2)	possibly_damaging(0.566)	
+17;38644758;CTG>C	0	0.065	0	0.074	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	TNS4	-	-	-	-	-	-	-	-	-	-	-	-	
+17;38712160;CT>C,CTT	0.176	0.057	0	0.257	0.095	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	CCR7,CCR7	-	-	-	-	-	-	-	-	-	-	-	-	
+17;42333274;C>A	0.205	0	0.365	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SLC4A1	-	-	-	-	-	-	-	-	-	-	-	-	
+17;48603775;C>CTATTTATT	0.16	0.1	0.25	0.222	0.091	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MYCBPAP	-	-	-	-	-	-	-	-	-	-	-	-	
+17;56356653;C>G	0	0.145	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	splice_region_variant&intron_variant	LOW	MPO	ENST00000225275		ENST00000225275.3:c.678+5G>C							SNV			
+17;57049716;CT>C,CTT	0.154	0.169	0.082	0	0.136	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	PPM1E,PPM1E	-	-	-	-	-	-	-	-	-	-	-	-	
+17;62547476;GAA>GAAA,GA,G	0.095	0.059	0.095	0.25	0.107	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	SMURF2,SMURF2,SMURF2	-	-	-	-	-	-	-	-	-	-	-	-	
+17;67246495;GAT>G	0	0	0.107	0.067	0.056	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ABCA5	-	-	-	-	-	-	-	-	-	-	-	-	
+17;71436926;G>C	0.151	0	0	0	0.111	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SDK2	-	-	-	-	-	-	-	-	-	-	-	-	
+17;72521760;GTC>G	0	0	0	0.086	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	CD300LB	-	-	-	-	-	-	-	-	-	-	-	-	
+17;73944639;CTT>C,CT,CTTT	0	0.179	0.184	0	0.217	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant,intron_variant	-	ACOX1,ACOX1,ACOX1	-	-	-	-	-	-	-	-	-	-	-	-	
+17;79916537;C>T	0.264	0.286	0.385	0.125	0.387	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NOTUM	-	-	-	-	-	-	-	-	-	-	-	-	
+18;21496435;C>T	0.277	0.296	0.42	0.171	0.4	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	LAMA3	-	-	-	-	-	-	-	-	-	-	-	-	
+18;32457930;T>G	0	0	0	0	0.222	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	DTNA	-	-	-	-	-	-	-	-	-	-	-	-	
+18;33283113;AT>A	0.1	0	0	0	0.231	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GALNT1	-	-	-	-	-	-	-	-	-	-	-	-	
+18;51731582;C>T	0.33	0.301	0.421	0.128	0.309	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	MBD2	-	-	-	-	-	-	-	-	-	-	-	-	
+18;63736432;T>C	0	0	0.167	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+18;70417475;A>G	0.269	0.249	0.377	0.18	0.279	0.411401098901	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant|upstream_gene_variant|upstream_gene_variant|	LOW|MODIFIER|MODIFIER|	NETO1|RNA5SP460|RP11-713C5.1|	ENST00000327305|ENST00000516789|ENST00000584727|	9/11|||	ENST00000327305.6:c.1363T>C|||	ENST00000327305.6:c.1363T>C(p.%3D)|||	2021|||	1363|||	455|||	L|||	Ttg/Ctg|||	SNV|SNV|SNV|	|||	|||	
+19;6750322;A>C	0.16	0	0.379	0	0	0.177777777778	NA	NA	NA	NA	NA	NA	NA	1525	alleleBias	downstream_gene_variant|missense_variant|intron_variant&non_coding_transcript_variant|	MODIFIER|MODERATE|MODIFIER|	SH2D3A|TRIP10|CTD-3128G10.6|	ENST00000245908|ENST00000313285|ENST00000594056|	|12/14||	|ENST00000313285.8:c.1247A>C|ENST00000594056.1:n.107+1050T>G|	|ENSP00000320493.6:p.Glu416Ala||	|1329||	|1247||	|416||	|E/A||	|gAa/gCa||	SNV|SNV|SNV|	|deleterious(0.03)||	|benign(0.406)||	
+19;6828110;C>T	0.142	0.165	0.164	0.149	0.229	0.272019258001	NA	NA	NA	NA	NA	NA	NA	2962	alleleBias	synonymous_variant	LOW	VAV1	ENST00000602142	10/27	ENST00000602142.1:c.951C>T	ENST00000602142.1:c.951C>T(p.%3D)	1033	951	317	N	aaC/aaT	SNV			
+19;6963450;GTAAGA>ATAAGA,ATAAGG	0.191	0	0	0	0.222	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.,.	-	.,.	-	-	-	-	-	-	-	-	-	-	-	-	
+19;8381263;C>T	0	0.355	0	0.161	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	NDUFA7	-	-	-	-	-	-	-	-	-	-	-	-	
+19;10395973;G>T	0	0	0	0	0.087	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	ICAM1	-	-	-	-	-	-	-	-	-	-	-	-	
+19;14046601;C>T	0	0.221	0	0.169	0	0	0	0	0.000420816383785	0	0.123719464145	0.0162523900574	0.177004771433	0	Q20	missense_variant|downstream_gene_variant|	MODERATE|MODIFIER|	PODNL1|CC2D1A|	ENST00000339560|ENST00000318003|	5/8||	ENST00000339560.5:c.448G>A||	ENSP00000345175.4:p.Ala150Thr||	722||	448||	150||	A/T||	Gcg/Acg||	SNV|SNV|	tolerated(0.08)||	possibly_damaging(0.713)||	
+19;16640580;TTGC>T	0	0	0.064	0.068	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	inframe_deletion	-	CHERP	-	-	-	-	-	-	-	-	-	-	-	-	
+19;17634295;C>T	0.132	0	0	0	0.214	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FAM129C	-	-	-	-	-	-	-	-	-	-	-	-	
+19;19766578;C>T	0.227	0.244	0.256	0.118	0.229	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ATP13A1	-	-	-	-	-	-	-	-	-	-	-	-	
+19;20727705;T>C	0.12	0	0	0	0.149	0.00186154741129	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	missense_variant	MODERATE	ZNF737	ENST00000427401	4/4	ENST00000427401.4:c.1304A>G	ENSP00000395733.3:p.Lys435Arg	1399	1304	435	K/R	aAg/aGg	SNV	tolerated(0.23)	possibly_damaging(0.491)	
+19;20738565;G>A	0.105	0	0	0	0.161	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ZNF737	-	-	-	-	-	-	-	-	-	-	-	-	
+19;23676282;G>A	0.269	0.159	0.281	0.195	0.213	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+19;37101355;CA>CAA,C	0.058	0	0.102	0.176	0.061	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	ZNF382,ZNF382	-	-	-	-	-	-	-	-	-	-	-	-	
+19;37487530;C>T	0.203	0.158	0.291	0.147	0.286	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+19;38189750;T>A	0.099	0	0	0	0.127	0	0	0	0.127103888566	0	0	0.124520255864	0.0401727861771	0	Q20	intron_variant&NMD_transcript_variant|stop_gained|	MODIFIER|HIGH|	CTD-2528L19.4|ZNF607|	ENST00000586606|ENST00000355202|	|5/5|	ENST00000586606.2:c.346+936A>T|ENST00000355202.4:c.1282A>T|	|ENSP00000347338.2:p.Lys428Ter|	|1878|	|1282|	|428|	|K/*|	|Aag/Tag|	SNV|SNV|	||	||	
+19;48378189;C>T	0.206	0.154	0.377	0.2	0.263	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	SULT2A1	-	-	-	-	-	-	-	-	-	-	-	-	
+19;49926530;CCAG>C	0	0	0	0.068	0	0.0166270783848	NA	NA	NA	NA	NA	NA	NA	1	Q20,QD	upstream_gene_variant|inframe_deletion|	MODIFIER|MODERATE|	GFY|PTH2|	ENST00000576655|ENST00000270631|	|1/2|	|ENST00000270631.1:c.64_66delCTG|	|ENSP00000270631.1:p.Leu22del|	|166-168|	|64-66|	|22|	|L/-|	|CTG/-|	deletion|deletion|	||	||	
+19;58556921;C>T	0.171	0	0.429	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ZSCAN1	-	-	-	-	-	-	-	-	-	-	-	-	
+19;58557521;G>A	0.114	0	0.351	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ZSCAN1	-	-	-	-	-	-	-	-	-	-	-	-	
+20;870801;G>A	0.3	0.241	0.494	0.135	0.407	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ANGPT4	-	-	-	-	-	-	-	-	-	-	-	-	
+20;6759758;AAT>A	0.057	0	0.108	0.053	0.053	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	BMP2	-	-	-	-	-	-	-	-	-	-	-	-	
+20;50234077;G>A	0	0	0	0	0.216	0	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	synonymous_variant	LOW	ATP9A	ENST00000338821	22/28	ENST00000338821.5:c.2367C>T	ENST00000338821.5:c.2367C>T(p.%3D)	2632	2367	789	D	gaC/gaT	SNV			
+20;56191538;C>T	0.341	0.341	0.436	0.19	0.39	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	ZBP1	-	-	-	-	-	-	-	-	-	-	-	-	
+21;10775341;CGAACGGAATGGAA>GGAACGGAATGGAA,GGAATGGAATGGAA,GGAATGGAATGGAC	0	0.119	0.154	0.194	0.208	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.,.,.	-	.,.,.	-	-	-	-	-	-	-	-	-	-	-	-	
+21;28338020;G>A	0.115	0	0	0	0.218	NA	0	0	0.158966074313	0.00351185250219	0	0.137857900318	0.0289615225486	0	Q20,QD	missense_variant	MODERATE	ADAMTS5	ENST00000284987	1/8	ENST00000284987.5:c.691C>T	ENSP00000284987.5:p.Arg231Cys	813	691	231	R/C	Cgc/Tgc	SNV	deleterious(0.01)	possibly_damaging(0.487)	
+21;32114618;TAGCCAG>CATCCAC	0	0	0.103	0.073	0.053	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+21;38845338;AT>A,ATT	0.069	0	0.118	0	0.273	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	DYRK1A,DYRK1A	-	-	-	-	-	-	-	-	-	-	-	-	
+21;45846914;G>T	0.077	0	0	0	0.1	0	NA	NA	NA	NA	NA	NA	NA	0	Q20	synonymous_variant	LOW	TRPM2	ENST00000397928	27/32	ENST00000397928.1:c.3894G>T	ENST00000397928.1:c.3894G>T(p.%3D)	4339	3894	1298	T	acG/acT	SNV			
+21;46900079;C>T	0.324	0.257	0.325	0.082	0.432	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL18A1	-	-	-	-	-	-	-	-	-	-	-	-	
+21;47417147;CCAGGCCCTTCGTG>C	0.324	0.412	0.269	0.24	0.333	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	COL6A1	-	-	-	-	-	-	-	-	-	-	-	-	
+21;47571937;C>G	0	0.094	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	FTCD	-	-	-	-	-	-	-	-	-	-	-	-	
+21;47613476;C>G	0.222	0	0.056	0.05	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant,intron_variant	-	AP001468.1,LSS	-	-	-	-	-	-	-	-	-	-	-	-	
+22;18189362;AGT>A	0.308	0.176	0.449	0.192	0.306	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	BCL2L13	-	-	-	-	-	-	-	-	-	-	-	-	
+22;20785748;C>T	0	0.111	0	0	0	0	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	synonymous_variant	LOW	SCARF2	ENST00000266214	4/11	ENST00000266214.5:c.411G>A	ENST00000266214.5:c.411G>A(p.%3D)	516	411	137	V	gtG/gtA	SNV			
+22;35679787;AAT>A	0	0	0	0	0.103	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	HMGXB4	-	-	-	-	-	-	-	-	-	-	-	-	
+MT;12772;G>A	0	0.067	0	0.105	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+X;12708405;C>T	0.653	0.636	0.886	0.325	0.772	0.790158172232	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	FRMPD4	ENST00000380682	8/17	ENST00000380682.1:c.773C>T	ENSP00000370057.1:p.Thr258Met	1279	773	258	T/M	aCg/aTg	SNV	deleterious(0.01)	possibly_damaging(0.61)	
+X;14708781;TTC>T	0.103	0	0.154	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	GLRA2	-	-	-	-	-	-	-	-	-	-	-	-	
+X;32305645;C>T	0	0	0	0	0.087	0.00103483959986	NA	NA	NA	NA	NA	NA	NA	0	Q20	splice_donor_variant	HIGH	DMD	ENST00000357033		ENST00000357033.4:c.6290+1G>A							SNV			
+X;52825414;A>T	0.298	0	0	0	0.317	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	SPANXN5	-	-	-	-	-	-	-	-	-	-	-	-	
+X;99921785;C>T	0	0	0	0	0.167	0	NA	NA	NA	NA	NA	NA	NA	0	Q20	synonymous_variant	LOW	SRPX2	ENST00000373004	8/11	ENST00000373004.3:c.816C>T	ENST00000373004.3:c.816C>T(p.%3D)	1244	816	272	H	caC/caT	SNV			
+X;109924715;C>T	0.386	0	0	0	0.656	0.00175029171529	NA	NA	NA	NA	NA	NA	NA	0	Q20,QD	missense_variant	MODERATE	CHRDL1	ENST00000372042	10/12	ENST00000372042.1:c.1151G>A	ENSP00000361112.1:p.Arg384Gln	1253	1151	384	R/Q	cGa/cAa	SNV	tolerated(0.14)	benign(0.003)	
+X;119867121;C>T	0.705	0.596	0.976	0.264	0.643	NA	NA	NA	NA	NA	NA	NA	NA	-	-	.	-	.	-	-	-	-	-	-	-	-	-	-	-	-	
+X;123199698;G>A	0.216	0	0	0	0.212	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	STAG2	-	-	-	-	-	-	-	-	-	-	-	-	
+X;135750063;GGA>G	0	0.15	0	0	0	NA	NA	NA	NA	NA	NA	NA	NA	-	-	3_prime_UTR_variant	-	ARHGEF6	-	-	-	-	-	-	-	-	-	-	-	-	
+X;152482592;A>G	0.344	0	0.827	0	0	0.683557760454	NA	NA	NA	NA	NA	NA	NA	2962		missense_variant	MODERATE	MAGEA1	ENST00000356661	3/3	ENST00000356661.5:c.419T>C	ENSP00000349085.5:p.Phe140Ser	638	419	140	F/S	tTt/tCt	SNV	deleterious(0)	probably_damaging(1)	
+X;153295944;C>T	0.588	0.459	0.893	0.431	0.796	0.879593432369	NA	NA	NA	NA	NA	NA	NA	2962		synonymous_variant	LOW	MECP2	ENST00000453960	3/3	ENST00000453960.2:c.1371G>A	ENST00000453960.2:c.1371G>A(p.%3D)	1426	1371	457	T	acG/acA	SNV			
+Y;21894685;C>T	0	0.571	0	0.4	0.056	NA	NA	NA	NA	NA	NA	NA	NA	-	-	intron_variant	-	KDM5D	-	-	-	-	-	-	-	-	-	-	-	-	
