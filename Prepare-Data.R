@@ -4,14 +4,21 @@ library(vcfR)
 library(pheatmap)
 require(gridExtra)
 
-WES.file = 'esempio/WES_NG-8132_42.mutect2.platypus_PASS.vcf'
-TES1.file = 'esempio/TES_1_patient_42_platypus.vcf'
-TES2.file = 'esempio/TES_2_42.platypus.vcf'
+WES.file = '49/NG-8132_49.mutect2.platypus_PASS.vcf'
+TES1.file = '49/patient_49_platypus.vcf'
+TES2.file = '49/49.platypus.vcf'
 
 ######### Extract from VCF files the SNVs information
 WES.data = loadVCF(WES.file)
 TES1.data = loadVCF(TES1.file)
 TES2.data = loadVCF(TES2.file)
+
+assampl(WES.data)
+assampl(TES1.data)
+assampl(TES2.data)
+
+colnames(WES.data$NR)[3] = colnames(WES.data$NV)[3] = '49S'
+
 
 # Panel TES2 contains mutations from all cohort -- we just need the ones for this patient
 w = which(rownames(TES2.data$NV) %in% rownames(WES.data$NV))
@@ -20,7 +27,7 @@ TES2.data$NR = TES2.data$NR[w, ]
 
 ######################################################################################################
 
-margin.sample = '42M'
+margin.sample = '49M'
 
 # Clonal from the targeted panel
 TES1.clonal = subset_clonal_mutations(TES1.data, type = 'clonal')
@@ -55,6 +62,14 @@ tested.sample = '42T1'
 # the ones that we are going to need for the pvalue. These variants are
 purity = list(TUM = c(.87, .82, .67, .31), M = .34)
 purity = list(TUM = c(0.890, 0.932, 0.757, 0.294), M = 0.081)
+
+
+# 49 Mr Bayes
+purity = list(TUM = c(0.999, 0.376, 0.453, 0.478), M = 0.055)
+
+
+
+
 
 batch_tests(WES.clonal, TES1.zeroes, TES1.testable, margin.sample, purity)
 batch_tests(WES.clonal, TES2.zeroes, TES2.testable, margin.sample, purity)

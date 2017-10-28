@@ -119,7 +119,7 @@ pplot_fit_power = function(s_n, t_n, tests_t_n,
   abline(v = median(s_n), col = "red", lty = 2)
   legend(x = "topright", c("Mean", "Median"), col = c("royalblue", "red"), lwd = c(2, 2), cex = .6, bty = 'n')
  
-  # P-values for the null model  
+  # P-values for the null model H_0
   pvalues = VGAM::dbetabinom(0, range_coverage, prob = fit_prob, rho = fit_disp, log = FALSE)
   names(pvalues) = range_coverage
   names(range_coverage) = range_coverage
@@ -187,7 +187,7 @@ pplot_fit_power = function(s_n, t_n, tests_t_n,
     cat('\t Rejected SNVs:', red(length(rejected)), '\n') 
     
     
-    SNVs = cbind(SNVs, pvalue = pvalues[SNVs$NR])
+    SNVs = cbind(SNVs, pvalue = pvalues[SNVs$NR.adj])
     aster = function(p, pmin){
       if(p>=pmin) return('')
       if(p < 0.001) return('***')
