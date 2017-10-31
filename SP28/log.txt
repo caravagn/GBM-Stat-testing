@@ -1,0 +1,27 @@
+Meta line 47 read in.
+All meta lines processed.
+Character matrix gt created.
+Character matrix gt rows: 330
+Character matrix gt cols: 16
+skip: 0
+nrows: 330
+row_num: 0
+
+Processed variant: 330
+All variants processed
+* Colnames edited: R11M R11S R11T SP28B SP28M SP28S SP28T 
+Meta line 47 read in.
+All meta lines processed.
+Character matrix gt created.
+Character matrix gt rows: 41
+Character matrix gt cols: 16
+skip: 0
+nrows: 41
+row_num: 0
+
+Processed variant: 41
+All variants processed
+* Colnames edited: 28recM 28recS 28recT 28B 28primM 28primS 28primT 
+[1] "R11M"  "R11S"  "R11T"  "SP28B" "SP28M" "SP28S" "SP28T"
+[1] "28recM"  "28recS"  "28recT"  "28B"     "28primM" "28primS" "28primT"
+[1] "A44M"  "A44S"  "A44T2" "A44T3" "A44T5"

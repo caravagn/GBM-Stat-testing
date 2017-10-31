@@ -317,36 +317,16 @@ loadVCF = function(file)
     cat('* Colnames edited:', colnames(f.data$NV), '\n')
   }
   
+  f.data$VAF = f.data$NV / f.data$NR
+  
+  if(any(is.na(f.data$VAF))) {
+    warning('There are mutations with NR = 0, which leads to NaN VAFs -- forcing them to be 0.')
+    f.data$VAF[is.na(f.data$VAF)] = 0
+  }
+  
+  
   return(f.data)
 }
-
-# table_clonal_in_T = function(W, T1, T2)
-# {
-#   mutations = unique(
-#     c(rownames(W$NR),     
-#     rownames(T1$NR),     
-#     rownames(T2$NR))
-#     )
-#   
-#   M = matrix(NA, nrow = length(mutations), ncol = 2)
-#   rownames(M) = mutations
-#   colnames(M) = c('WES', 'TES1')
-#   
-#   W = subset_clonal_mutations(W, type = 'clonal')
-#   M[rownames(W$NR), 'WES'] = 1
-# 
-#   T1 = subset_clonal_mutations(T1, type = 'clonal')
-#   M[rownames(T1$NR), 'TES1'] = 1
-#   
-#   w = which(is.na(M[, 'WES']) &  M[, 'TES1'] == 1)
-#   M[w, 'WES'] = 1
-#   
-#   
-#   M = M[order(rowSums(M, na.rm = T), decreasing = TRUE), ]
-#   M = M[rowSums(M, na.rm = T) > 0, ]
-#   
-#   return(as.data.frame(M))
-# }
 
 
 subset_zeroesM_mutations = function(D, min.coverage = 100)
@@ -367,293 +347,274 @@ subset_zeroesM_mutations = function(D, min.coverage = 100)
 }
 
 
-asmuts  = function(D) {return(rownames(D$NV))}
-assampl = function(D) {return(colnames(D$NV))}
-
-subset_clonal_mutations = function(D, type, correction = NULL)
+correctForPurity = function(D, purity, PROCESS)
 {
-  samples = endsWith(assampl(D), 'M') | endsWith(assampl(D), 'B') | endsWith(assampl(D), 'S')
-  D$NV = D$NV[, !samples, drop = FALSE]
-  D$NR = D$NR[, !samples, drop = FALSE]
+  T_purity = purity$TUM
+  M_purity = purity$M
   
-  selection = NULL
-  if(type == 'clonal') {
-   
-     selection = apply(D$NV, 1, function(x) all(x > 0))
-     
-     if(!any(is.null(correction)))
-     {
-       # check out correction
-       removed = names(selection)[!selection]
-       corrected = intersect(removed, asmuts(correction))
-       
-       if(length(corrected) > 0) {
-         cat('Correction used for', corrected)
-         selection[corrected] = TRUE
-       }
-      }
-     
-     # print(selection[asmuts(correction)])
-  }
-  else
-    selection = apply(D$NV, 1, function(x) any(x == 0))
+  # Prepare names  
+  names(T_purity) = paste(PROCESS, names(T_purity), sep = '')
+  names(M_purity) = paste(PROCESS, 'M', sep = '')
+  
+  cat('[correctForPurity] Columns: ', colnames(D), '\nPurity estimates are\n')
+  print(T_purity)
+  print(M_purity)
+  
+  for(c in colnames(D))
+  {
+    if(c %in% names(T_purity)) 
+    {
+      cat('\nCorrecting tumor VAF for ', c, 'with purity', T_purity[c])
+      D[, c] = D[, c] / T_purity[c]
+    }
     
-  D$NV = D$NV[selection, , drop = FALSE]
-  D$NR = D$NR[selection, , drop = FALSE]
+    if(c %in% names(M_purity)) 
+    {
+      cat('\nCorrecting margin VAF for ', c, 'with purity', M_purity[c])
+      D[, c] = D[, c] / M_purity[c]
+    }
+  }
   
+  if(any(D > 1)) 
+  {
+    cat('\n')
+    warning('\nCorrection for purity leads to VAF > 1')
+    D[D > 1] = 1
+  }
   
   return(D)
 }
 
+asmuts  = function(D) {return(rownames(D$NV))}
+assampl = function(D) {return(colnames(D$NV))}
 
-plot_VAF = function(W, T1, T2)
+subset_clonal_mutations = function(D, clonal.cutoff = 0.2, correction = NULL)
+{
+  samples = endsWith(assampl(D), 'M') | endsWith(assampl(D), 'B') | endsWith(assampl(D), 'S')
+
+  vaf = D$VAF.adj[, !samples]
+  selection = apply(vaf, 1, function(x) all(x > clonal.cutoff))
+     
+  if(!any(is.null(correction)))
+  {
+    # check out correction
+    removed = names(selection)[!selection]
+    corrected = intersect(removed, asmuts(correction))
+    
+    if (length(corrected) > 0) {
+      cat('Correction used for', corrected, '\n')
+      selection[corrected] = TRUE
+    }
+  }
+  
+  D$NV = D$NV[selection, , drop = FALSE]
+  D$NR = D$NR[selection, , drop = FALSE]
+  D$VAF = D$VAF[selection, , drop = FALSE]
+  D$VAF.adj = D$VAF.adj[selection, , drop = FALSE]
+  
+  cat('Found', nrow(D$NV), 'clonal mutations.\n')
+  print(rownames(D$VAF.adj))
+  
+  return(D)
+}
+
+crossCheck = function(muts, reference, reference.Zeroes)
+{
+  if(length(muts) == 0) return(muts)
+  
+  cat('Cross-checking:', paste(muts, collapse = ', '), '\n\t', paste(asmuts(reference), collapse ='\n\t '), '\n')
+  
+  which.testable = muts %in% asmuts(reference)
+  muts.testable = muts[which.testable]
+  muts.non.testable = muts[!which.testable]
+  
+  if(length(muts.testable) == 0) {
+    cat('Nothing to test, returning.')
+    return(muts.non.testable)
+  }
+
+  cat('Testing:', paste(muts.testable, collapse = ', '), '\n\t', paste(asmuts(reference.Zeroes), collapse ='\n\t '), '\n')
+  
+  which.found = muts.testable %in% asmuts(reference.Zeroes)
+  muts.found = muts[which.found]
+  
+  cat('\nRejected: ', muts.testable[!which.found], '\n')
+  cat('Passed: ', c(muts.non.testable, muts.found), '\n')
+  
+  return(c(muts.non.testable, muts.found))
+}
+
+
+plot_VAF = function(W, 
+                    T1, 
+                    T2,
+                    W_clonal_mutations,
+                    T1_test,
+                    T2_test,
+                    clonal.cutoff,
+                    purity,
+                    PROCESS,
+                    show.SUBCLONAL = FALSE
+                    )
 {
   require(RColorBrewer)
   
-  Wvaf = W$NV / W$NR
-  T1vaf = T1$NV / T1$NR
-  T2vaf = T2$NV / T2$NR
+  Wvaf = W$VAF.adj
+  T1vaf = T1$VAF.adj
+  T2vaf = T2$VAF.adj
   
-  if(any(is.na(Wvaf)) || any(is.na(T1vaf)) || any(is.na(T2vaf))) {
-    warning('There are mutations with NR = 0, which leads to NaN VAFs -- forcing them to be 0.')
-    Wvaf[is.na(Wvaf)] = 0
-    T1vaf[is.na(T1vaf)] = 0
-    T2vaf[is.na(T2vaf)] = 0
-  }
+  ##### 
+  WES_rows = matrix('Subclonal', nrow = nrow(Wvaf), ncol = 1)
+  rownames(WES_rows) = rownames(Wvaf)
+  colnames(WES_rows) = 'Mutation'
+  WES_rows[W_clonal_mutations, ] = 'Clonal'
   
-  # annotation_cols = matrix('Tumour', nrow = ncol(Wvaf$NV), ncol = 1)
-  # rownames(annotation_cols) = colnames(Wvaf$NV)
-  # colnames(annotation_cols) = 'Sample'
-  # 
-  # margin.sample = endsWith(colnames(Wvaf$NV), 'M') 
-  # blood.sample = endsWith(colnames(Wvaf$NV), 'B') 
-  # stem.sample = endsWith(colnames(Wvaf$NV), 'S') 
-  # 
-  # annotation_cols[margin.sample, ] = 'Margin'
-  # annotation_cols[blood.sample, ] = 'Blood'
-  # annotation_cols[stem.sample, ] = 'Stem'
-  # 
-  # annotation_rows = matrix('NO', nrow = nrow(Wvaf$NV), ncol = 2)
-  # rownames(annotation_rows) = rownames(Wvaf$NV)
-  # colnames(annotation_rows) = c('Mutation', mut.annot.label)
-  # 
-  # clonal = subset_clonal_mutations(D, type = 'clonal')
-  # clonal = rownames(clonal$NV)
-  # 
-  # annotation_rows[clonal, 'Mutation'] = 'clonal in T'
-  # if(length(mut.annot) > 0) annotation_rows[mut.annot, mut.annot.label] = 'YES'
+  WES_cols = c('darkgoldenrod2', 'darkblue')
+  names(WES_cols) = c('Subclonal', 'Clonal')
+
+  Wvaf = Wvaf[order(rownames(Wvaf)), ]
   
   seqs = c(0, 1e-10, seq(0.01, 1.01, 0.01))
+  sseqs = seqs[seqs <= clonal.cutoff]
+  gseqs = seqs[seqs > clonal.cutoff]
+  colrMuts = c(
+    colorRampPalette(brewer.pal(9, 'Greens'))(length(sseqs)), 
+    colorRampPalette(brewer.pal(9, 'YlOrRd'))(length(gseqs))
+  )
   
-  Wvaf = vaf[order(rownames(vaf)), ]
-  
-  tab = pheatmap(
-    vaf,
-    color = c('lightgray', colorRampPalette(brewer.pal(9, 'Blues'))(length(seqs) - 2)),
+  # WES_rows = WES_rows[order(WES_rows['Mutation']), , drop = FALSE]
+  # print(WES_rows)
+  # Wvaf = Wvaf[rownames(WES_rows), ]
+
+  if(!show.SUBCLONAL){
+    WES_rows = WES_rows[WES_rows[, 'Mutation'] != 'Subclonal', , drop = FALSE ]
+    Wvaf = Wvaf[rownames(WES_rows), ]
+  }
+  print(Wvaf)
+    
+  tabWES = pheatmap(
+    Wvaf,
+    color = c('lightgray', colrMuts),
     breaks = seqs,
     cellwidth = 10,
     cellheight = 5,
     cluster_rows = FALSE,
-    main = main,
+    cluster_cols = FALSE,
+    main = paste('WES data'),
     fontsize_row = 5,
-    # annotation_row = as.data.frame(annotation_rows),
-    # annotation_col = as.data.frame(annotation_cols),
+    annotation_row = as.data.frame(WES_rows), 
+    annotation_colors = list(Mutation = WES_cols),
     border = NA,
     silent = TRUE
   )
   
-  return(tab$gtable)
+  #####   
+  
+  TES1_rows = matrix('No', nrow = nrow(T1vaf), ncol = 1)
+  rownames(TES1_rows) = rownames(T1vaf)
+  colnames(TES1_rows) = 'Test'
+  TES1_rows[T1_test, ] = 'Yes'
+  
+  T1vaf = T1vaf[order(rownames(T1vaf)), ]
+  
+  TES_cols = c('darkgreen', 'indianred1')
+  names(TES_cols) = c('Yes', 'No')
+  
+  tabT1 = pheatmap(
+    T1vaf,
+    color = c('lightgray', colrMuts),
+    breaks = seqs,
+    cellwidth = 10,
+    cellheight = 5,
+    cluster_rows = FALSE,
+    cluster_cols = FALSE,
+    main = paste('Panel TES1'),
+    fontsize_row = 5,
+    annotation_row = as.data.frame(TES1_rows),
+    annotation_colors = list(Test = TES_cols),
+    border = NA,
+    silent = TRUE
+  )
+  
+  #####   
+  
+  
+  TES2_rows = matrix('No', nrow = nrow(T2vaf), ncol = 1)
+  rownames(TES2_rows) = rownames(T2vaf)
+  colnames(TES2_rows) = 'Test'
+  TES2_rows[T2_test, ] = 'Yes'
+  
+  T2vaf = T2vaf[order(rownames(T2vaf)), ]
+  
+  tabT2 = pheatmap(
+    T2vaf,
+    color = c('lightgray', colrMuts),
+    breaks = seqs,
+    cellwidth = 10,
+    cellheight = 5,
+    cluster_rows = FALSE,
+    cluster_cols = FALSE,
+    main = paste('Panel TES2'),
+    fontsize_row = 5,
+    annotation_row = as.data.frame(TES2_rows),
+    annotation_colors = list(Test = TES_cols),
+    border = NA,
+    silent = TRUE
+  )
+
+  grid.arrange(tabWES$gtable, tabT1$gtable, tabT2$gtable, ncol = 3)
 }
 
-# plot_VAF = function(D, main = 'VAF plot', mut.annot, mut.annot.label)
+
+# plot_training_set = function(D, file = 'plot_training_set.pdf')
 # {
-#   require(RColorBrewer)
+#   par(mfrow = c(2,1))
 #   
-#   vaf = D$NV / D$NR
+#   D.cl = subset_clonal_mutations(D, type = 'clonal')
+#   D.scl = subset_clonal_mutations(D, type = 'subclonal')
 #   
-#   if(any(is.na(vaf))) {
-#     warning('There must be some mutations with NR = 0, which leads to NaN VAFs -- forcing them to be 0.')
-#     vaf[is.na(vaf)] = 0
-#   }
+#   vaf.cl = D.cl$NV / D.cl$NR
+#   vaf.scl = D.scl$NV / D.scl$NR
 #   
-#   annotation_cols = matrix('Tumour', nrow = ncol(D$NV), ncol = 1)
-#   rownames(annotation_cols) = colnames(D$NV)
-#   colnames(annotation_cols) = 'Sample'
-#   
-#   margin.sample = endsWith(colnames(D$NV), 'M') 
-#   blood.sample = endsWith(colnames(D$NV), 'B') 
-#   stem.sample = endsWith(colnames(D$NV), 'S') 
-#   
-#   annotation_cols[margin.sample, ] = 'Margin'
-#   annotation_cols[blood.sample, ] = 'Blood'
-#   annotation_cols[stem.sample, ] = 'Stem'
-#   
-#   annotation_rows = matrix('NO', nrow = nrow(D$NV), ncol = 2)
-#   rownames(annotation_rows) = rownames(D$NV)
-#   colnames(annotation_rows) = c('Mutation', mut.annot.label)
-# 
-#   clonal = subset_clonal_mutations(D, type = 'clonal')
-#   clonal = rownames(clonal$NV)
-#   
-#   annotation_rows[clonal, 'Mutation'] = 'clonal in T'
-#   if(length(mut.annot) > 0) annotation_rows[mut.annot, mut.annot.label] = 'YES'
-#   
-#   seqs = c(0, 1e-10, seq(0.01, 1.01, 0.01))
-# 
-#   vaf = vaf[order(rownames(vaf)), ]
-#   tab = pheatmap(
-#     vaf,
-#     color = c('lightgray', colorRampPalette(brewer.pal(9, 'Blues'))(length(seqs) - 2)),
-#     breaks = seqs,
-#     cellwidth = 10,
-#     cellheight = 5,
-#     cluster_rows = FALSE,
-#     main = main,
-#     fontsize_row = 5,
-#     annotation_row = as.data.frame(annotation_rows),
-#     annotation_col = as.data.frame(annotation_cols),
-#     border = NA,
-#     silent = TRUE
-#     )
-#   
-#   return(tab$gtable)
+#   hist(vaf.cl, breaks = seq(0, 1.01, 0.01), main = 'VAF of Clonal mutations', border = NA, col = 'lightblue', xlab = 'VAF')
+#   hist(vaf.scl, breaks = seq(0, 1.01, 0.01), main = 'VAF of Subclonal mutations', border = NA, col = 'lightblue', xlab = 'VAF')
+#   dev.copy2pdf(file = file)
 # }
 
-plot_training_set = function(D, file = 'plot_training_set.pdf')
-{
-  par(mfrow = c(2,1))
-  
-  D.cl = subset_clonal_mutations(D, type = 'clonal')
-  D.scl = subset_clonal_mutations(D, type = 'subclonal')
-  
-  vaf.cl = D.cl$NV / D.cl$NR
-  vaf.scl = D.scl$NV / D.scl$NR
-  
-  hist(vaf.cl, breaks = seq(0, 1.01, 0.01), main = 'VAF of Clonal mutations', border = NA, col = 'lightblue', xlab = 'VAF')
-  hist(vaf.scl, breaks = seq(0, 1.01, 0.01), main = 'VAF of Subclonal mutations', border = NA, col = 'lightblue', xlab = 'VAF')
-  dev.copy2pdf(file = file)
-}
 
-# prepare_training_test_set = function(
-#   margin.sample,
-#   WES,
-#   TES1,
-#   TES2
-# )
-# {
-#   just.clonal = TRUE
-#   
-#   primary.samples = setdiff(colnames(TES1$NV), margin.sample)
-#   primary.samples = primary.samples[!endsWith(primary.samples, 'B')]
-#   primary.samples = primary.samples[!endsWith(primary.samples, 'S')]
-#   
-#   cat(bgGreen('DATA\n'))
-#   cat('* Margin :', margin.sample, '\n')
-#   cat('* Samples:', primary.samples, '\n')
-# 
-#   if(just.clonal)
-#   {
-#     nM = nrow(WES$NR)
-#     WES = subset_clonal_mutations(WES, type = 'clonal')
-#     nMc = nrow(WES$NR)
-#     cat('* Subsetting WES data to clonal mutations in T: ', nMc, 'out of', nM, '\n')
-#   }
-#   
-#   # First, take SNVs in the targeted panels that have 0 variant reads
-#   zeros.TES1 = rownames(TES1$NV)[which(TES1$NV[, margin.sample] == 0)]
-#   zeros.TES2 = rownames(TES2$NV)[which(TES2$NV[, margin.sample] == 0)]
-#   
-#   cat(bgGreen('\nFILTER #1'), cyan('SNVs in targeted panel that have 0 variant reads\n'))
-#   cat('\t TES1 : ', (zeros.TES1), '\n')
-#   cat('\t TES2 : ', (zeros.TES2), '\n')
-#   cat(bgRed('Counts'), 'TES1', length(zeros.TES1), 'TES2', length(zeros.TES2), '\n')
-#   
-#   # cat('VAF status in WES\n')
-#   # print(WES$NV[c(zeros.TES1, zeros.TES2), ])
-#   # 
-#   
-#   # Second, keep only targeted SNVs that are listed in the primary (if they are not, it means that 
-#   # they had no mutations, and so we do not need them)
-#   if(length(zeros.TES1) > 0) zeros.TES1 = zeros.TES1[zeros.TES1 %in% rownames(WES$NV)]
-#   if(length(zeros.TES2) > 0) zeros.TES2 = zeros.TES2[zeros.TES2 %in% rownames(WES$NV)]
-#   
-#   cat(bgGreen('\nFILTER #2'), cyan('SNVs in targeted panel that are clonal in WES samples\n'))
-#   cat('\t TES1 (head): ', head(zeros.TES1), '\n')
-#   cat('\t TES2 (head): ', head(zeros.TES2), '\n')
-#   cat(bgRed('Counts'), 'TES1', length(zeros.TES1), 'TES2', length(zeros.TES2), '\n')
-#   
-#   # Third, keep only targeted SNVs that have at least a mutant read in the primary. Most of them
-#   # should have, but some might have mutatns in the margin from the primary. This contradicts the fact
-#   # that they have no variants in the targeted panel, which has much higher coverage. We trust more the
-#   # targeted panel, and thus remove such variants considering those reads false positives.
-#   if(length(zeros.TES1) > 0) zeros.TES1 = zeros.TES1[rowSums(WES$NV[zeros.TES1, primary.samples, drop = FALSE]) > 0]
-#   if(length(zeros.TES2) > 0) zeros.TES2 = zeros.TES2[rowSums(WES$NV[zeros.TES2, primary.samples, drop = FALSE]) > 0]
-#   
-#   cat(bgGreen('\nFILTER #3'), cyan('targeted SNVs that have at least a mutant read in the primary\n'))
-#   cat('\t TES1 (head): ', head(zeros.TES1), '\n')
-#   cat('\t TES2 (head): ', head(zeros.TES2), '\n')
-#   cat(bgRed('Counts'), 'TES1', length(zeros.TES1), 'TES2', length(zeros.TES2), '\n')
-#   
-#   # There are some weird cases as well, in which the coverage at the targeted panel is below say 100x
-#   # Since we correct for MHT and we are strict with FWER, we better remove these entries which will
-#   # never be significant
-#   if(length(zeros.TES1) > 0) zeros.TES1 = zeros.TES1[TES1$NR[zeros.TES1, margin.sample, drop = FALSE] > 100]
-#   if(length(zeros.TES2) > 0) zeros.TES2 = zeros.TES2[TES2$NR[zeros.TES2, margin.sample, drop = FALSE] > 100]
-#   
-#   cat(bgGreen('\nFILTER #4'), cyan('targeted SNVs that have at minimum coverage of 100 reads\n'))
-#   cat('\t TES1 (head): ', head(zeros.TES1), '\n')
-#   cat('\t TES2 (head): ', head(zeros.TES2), '\n')
-#   cat(bgRed('Counts'), 'TES1', length(zeros.TES1), 'TES2', length(zeros.TES2), '\n')
-#   
-#   # For the test, we need first a training model. We train on SNVs from the tested.sample that are not
-#   # the ones that we are going to need for the pvalue. These variants are
-#   training.variants = rownames(WES$NV)
-#   training.variants = training.variants[!(training.variants %in% c(zeros.TES1, zeros.TES2))]
-#   
-#   training.WES.data = WES
-#   training.WES.data$NV = training.WES.data$NV[training.variants, ]
-#   training.WES.data$NR = training.WES.data$NR[training.variants, ]
-#   
-#   return(
-#     list(
-#       training = training.WES.data,
-#       test.TES1 = zeros.TES1,
-#       test.TES2 = zeros.TES2
-#     )
-#   )
-#   
-# }
-
-batch_tests = function(WES.clonal, panel.zeroes, panel.testable, margin.sample, purity, psign = 0.05)
+batch_tests = function(WES.clonal, panel.zeroes, panel.testable, margin.sample, purity, psign, panel)
 {
   require(crayon)
   
   if(length(panel.testable) == 0) stop('Nothing to test, aborting.')
   
-  pvalues = matrix(NA, ncol = length(assampl(WES.clonal)), nrow = length(panel.testable))
-  colnames(pvalues) = assampl(WES.clonal)
-  rownames(pvalues) = panel.testable
+  samples = endsWith(assampl(WES.clonal), 'M') | endsWith(assampl(WES.clonal), 'B') | endsWith(assampl(WES.clonal), 'S')
+  WES.clonal$NV = WES.clonal$NV[, !samples]
+  WES.clonal$NR = WES.clonal$NR[, !samples]
   
-  cat(bgGreen('Tests Matrix\n'))
-  print(pvalues)
+
+    cat(bgGreen('Tests Matrix\n'))
+  # print(pvalues)
   
-  T_purity = purity$TUM
-  names(T_purity) = assampl(WES.clonal)
+  cat('Purity', purity$TUM, ' and margin is ', purity$M, '\n')
+  # T_purity = purity$TUM
+  # names(T_purity) = assampl(WES.clonal)
+  cat('Tumour purity is unused here!\n')
   
   M_purity = purity$M
-  
-  
   result = NULL
 
-  for(tested.sample in assampl(WES.clonal))
+  for(t in 1:length(assampl(WES.clonal)))
   {
+    tested.sample = assampl(WES.clonal)[t]
+    
     cat('\n\n************** TRAINING ', tested.sample, '\n\n')
     
     quartz(height = 10)
     
     toTest = panel.zeroes$NR[panel.testable, margin.sample]
     names(toTest) = panel.testable
-
+    
     ex = pplot_fit_power(
       s_n = WES.clonal$NV[, tested.sample],
       t_n = WES.clonal$NR[, tested.sample],
@@ -663,32 +624,58 @@ batch_tests = function(WES.clonal, panel.zeroes, panel.testable, margin.sample, 
       purity = c(1, M_purity),
       range_coverage = 1:20000)
     
-    ex = cbind(ex, region = tested.sample, variant = rownames(ex))
-    result = rbind(result, ex)
+    # remove last column
+    ex = ex[, 1:(ncol(ex)-1)]
+    colnames(ex)[ncol(ex)] = paste(tested.sample, '.pvalue', sep = '')
     
-    dev.copy2pdf(file = paste(tested.sample, '.pdf', sep =''))
+    if(t == 1) result = ex
+    else{
+      result = cbind(
+        result,
+        ex[, paste(tested.sample, '.pvalue', sep = ''), drop = FALSE]
+        )
+    }
+    
+    dev.copy2pdf(file = paste(panel, tested.sample, '.pdf', sep =''))
     dev.off()
     
-    # readline('Hit for next test...')
+    readline('Hit for next test...')
   }
   
+  print(result)
+
   ## Very hard correction
-  numTests = nrow(result)
+  numTests = nrow(result) * length(assampl(WES.clonal))
   psignFWER = psign/numTests
   
   cat(bgRed('\nOverall Bonferroni FWER correction for', numTests,' number of tests\n'))
   cat(cyan('Significance at level', psign, 'obtained with p <', psignFWER), '\n')
   
-  result = cbind(
-    result, 
-    outcome = 'ACCEPT_H0')
+  means = apply(
+    result,
+    1,
+    function(x) mean(x[3:length(x)]))
+
+  asts = apply(
+    result,
+    1,
+    function(x) {
+      ps = x[3:length(x)]
+      aps = mean(ps)
+      if(all(ps < psignFWER)) 
+      {
+        if(aps < 0.001) return(paste('***'))
+        if(aps < 0.01) return(paste('**'))
+        if(aps < 0.05) return(paste('*'))
+      }
+      else return(paste('reject'))
+    })
   
-  result$outcome = result$pvalue < psignFWER
+  result$means = means
+  result$sign = asts
   
-  # 
-  result = result[, c('variant', 'region', 'NR', 'NR.adj', 'pvalue', 'outcome', 'Var.4')]
-  rownames(result) = NULL
-  colnames(result)[c(6, 7)] = c(paste('p <', psignFWER), '')
+  
+  result = result[order(result$means), ]
   
   return(result)
 }
