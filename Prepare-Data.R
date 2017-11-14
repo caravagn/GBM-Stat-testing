@@ -4,7 +4,8 @@ library(vcfR)
 library(pheatmap)
 require(gridExtra)
 
-PATIENTS = c('42', '49', '52', '54', '56', '57', 'A44', 'SP28')
+#PATIENTS = c('42', '49', '52', '54', '56', '57', 'A44', 'SP28')
+PATIENTS = c('42', '49', '52', '54', '56', '57', 'A44')
 
 purity = 
   list(
