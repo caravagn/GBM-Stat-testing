@@ -1,3 +1,169 @@
+jamPDF = function(in.files, out.file = 'jamPDF.pdf', layout = '3x3', delete.original = TRUE, hide.output = TRUE)
+{
+  in.files = in.files[sapply(in.files, file.exists)]
+  if(length(in.files) == 0) return()
+  
+  cmd = paste('pdfjam ', 
+              paste(in.files, collapse = ' '), 
+              ' --nup ', layout, ' --landscape --outfile ', out.file, sep = ' ')
+  
+  aa = system(cmd, intern = hide.output, ignore.stderr = TRUE)
+  
+  # print(cmd)
+  
+  if(delete.original) file.remove(setdiff(in.files, out.file))
+}
+correctReadCounts = function(data, column, purity)
+{
+  tumourSpecificReads = function(coverage, Ct = 2, purity = 1) {
+    
+    #Ct = tumour copy number
+    #purity = tumour purity
+    #coverage = total coverage at the locus
+    
+    #How reads are from the tumour?
+    tumour.reads = (Ct*purity) / ((Ct*purity) + (2*(1 - purity))) * coverage
+    
+    #Return
+    return(tumour.reads)
+    
+  }
+  
+  for(i in 1:nrow(data)){
+    if(!is.na(data[i, column]))
+      data[i, column] =  ceiling(tumourSpecificReads(data[i, column], data$CN[i], purity))
+  }
+  
+  return(data)
+}
+
+BBMLE = function(data, column, main){
+  require(VGAM)
+  require(fitdistrplus)
+  require(crayon)
+  
+  cat(bgRed(column), '\n')
+  col.R = paste('TRNR', column, sep = '.') 
+  col.V = paste('TRNV', column, sep = '.') 
+  
+  
+  df = lapply(1:length(data), function(w, m) {
+    cat(blue('CN = ', names(data)[w], '\n'))
+    m = paste(m, '- CN =', names(data)[w], ' - npoints =', nrow( data[[w]]), 'from sample', column)
+    
+    w = data[[w]]
+    s_n = w[, col.V]
+    t_n = w[, col.R]
+    xx  = cbind(s_n, t_n)
+    
+    # cat(col.V, '\n')
+    # print(xx)
+    # 
+    if(any(t_n < s_n)){
+      cat(red("\n----- Correction for entries\n"))
+      print(xx[t_n < s_n])
+      cat(red("\n-----\n"))
+      t_n[t_n < s_n] = s_n[t_n < s_n]
+    }
+    
+    # MLE BetaBin    
+    cat(bgGreen('*** BetaBinomial MLE fit:') )
+    fit = Coef(VGAM::vglm(cbind(s_n, t_n - s_n) ~ 1, betabinomial, trace = FALSE))
+    fit_prob = round(fit[1], 3)
+    fit_disp = round(fit[2], 3)
+    cat(cyan('  mu ='), fit['mu'], cyan('rho ='), fit['rho'], '\n')  
+    
+    # empirical density  
+    N_emp = round(mean(t_n))
+    x = round(seq(0, 1, 0.01) * N_emp)
+    bbin_den = VGAM::dbetabinom(x, N_emp, prob = fit_prob, rho = fit_disp, log = FALSE)
+    cat("Density from empirical coverage: ", N_emp, '\n')
+    
+    # density and Histogram of success probability
+    h = hist(s_n / t_n, breaks = seq(0, 1.1, 0.01), plot = FALSE)
+    h$counts=h$counts/sum(h$counts)
+    
+    plot(h,
+         col = 'lightblue',
+         main = m,
+         xlab = 'VAF',
+         border = NA
+    )
+    
+    lines(x/N_emp, bbin_den, lwd = 2, col = 'darkred')
+    
+    legend(
+      "topright",
+      title = 'Beta-Binomial (MLE fit)',
+      legend = bquote(mu == .(fit_prob) ~ ',' ~ rho == .(fit_disp) ~ C[symbol("\052")] == .(N_emp)),
+      col = c('darkred'),
+      bty = 'n',
+      pch = 19,
+      cex = 1
+    )
+    
+    c(fit_prob, fit_disp)
+  },
+  m = main
+  )
+  
+  df = Reduce(rbind, df)
+  if(is.null(ncol(df))) df = t(data.frame(df))
+  
+  df = cbind(df, Region = column)
+  df = cbind(df, CN = names(data))
+  df = data.frame(df, stringsAsFactors = FALSE)
+  if(is.null(ncol(df))) df = t(data.frame(df))
+  
+  df$mu = as.numeric(df$mu)
+  df$rho = as.numeric(df$rho)
+  
+  rownames(df) = NULL
+  df
+}
+
+BBpval = function(training.params, toTest, significance = 0.05)
+{
+  panel = lapply(names(toTest), function(w)
+    {
+      tr = training.params[training.params$CN == w, ]
+      tt = toTest[[w]]
+  
+      pvalues = matrix(1, ncol = nrow(tr), nrow = nrow(tt))
+      colnames(pvalues) = tr$Region
+      rownames(pvalues) = rownames(tt)
+
+      for(i in 1:nrow(pvalues))
+      {
+        for(j in 1:nrow(tr))
+          pvalues[i, j] = VGAM::dbetabinom(0, tt[i, 'TEST'], prob = tr[j, 'mu'], rho = tr[j, 'rho'], log = FALSE)
+      }
+      
+      cat(cyan('Pre-correction pvalues\n'))
+      print(pvalues)
+      
+      p = cbind(tt, pvalues)
+      colnames(p)[1] = 'Num. Reads'
+      p
+  })
+  
+  panel = Reduce(rbind, panel)
+  
+  num_of_tests = Reduce(prod, lapply(toTest, nrow)) * length(unique(training.params$Region))
+  cutoff = significance/num_of_tests
+  cat(bgRed('\nMHT -- Num of tests:'), num_of_tests, ' --> alpha/ntests = ', cutoff, '\n') 
+  
+  sign = apply(panel, 1, function(w){
+    all(w[2:length(w)] < cutoff)
+  })
+  panel = cbind(panel, sign = sign)
+  
+  cat(bgGreen('\nP-values corrected for MHT\n'))
+  print(panel)
+  
+  return(panel)
+}
+
 pplot_fit_power = function(s_n, t_n, tests_t_n,
                       main, 
                       psign = 0.05,
