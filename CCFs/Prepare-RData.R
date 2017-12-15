@@ -87,6 +87,7 @@ rownames(purity) = c('M', 'T1', 'T2', 'T3', 'T4')
 purity$V1 = NULL
 colnames(purity) = c('purity')
 setwd(TES1.FOLDER)
+
 TES1 = read.vcfR('patient_49_platypus.vcf')
 
 TES1.VCF = NULL
