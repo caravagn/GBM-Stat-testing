@@ -1,8 +1,14 @@
+########## Author: Giulio Caravagna, ICR. <giulio.caravagna@icr.ac.uk> or <gcaravagn@gmail.com>
+##########
+########## This script will analyze data for each patient. It will:
+########## - load data prepared by the previous script, plus some extra info, and will reshape it in some data frame
+########## - create training and test
+
 MINTR.GROUP.SIZE = 10
 PVALUE = 0.05
 WORST.PURITY = 0.01
 library(vcfR)
-source('Lib.R')
+source('[Script] Auxiliary.lib.R')
 
 ######################################################################
 ###################################################################### Patient 49
@@ -10,7 +16,7 @@ source('Lib.R')
 
 load('P49.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_49.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_49.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)
@@ -72,7 +78,7 @@ save(patient, file = 'P49.RData')
 
 load('P52.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_52.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_52.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)
@@ -136,7 +142,7 @@ save(patient, file = 'P52.RData')
 
 load('P56.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_56.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_56.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)
@@ -200,7 +206,7 @@ save(patient, file = 'P56.RData')
 
 load('P57.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_57.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_57.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)
@@ -264,7 +270,7 @@ save(patient, file = 'P57.RData')
 
 load('PA44.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_A44.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_A44.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)
@@ -325,7 +331,7 @@ save(patient, file = 'PA44.RData')
 
 load('PSP28.RData')
 
-training.VCF = read.vcfR('WES_PASS/NG-8132_SP28.mutect2.platypus_PASS.vcf')
+training.VCF = read.vcfR('[Data] WES_PASS/NG-8132_SP28.mutect2.platypus_PASS.vcf')
 
 training = NULL
 training$NV <- extract.gt(training.VCF, element='NV', as.numeric=TRUE)

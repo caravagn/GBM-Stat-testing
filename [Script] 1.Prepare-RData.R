@@ -1,8 +1,18 @@
+########## Author: Giulio Caravagna, ICR. <giulio.caravagna@icr.ac.uk> or <gcaravagn@gmail.com>
+##########
+########## This script will create an Rdata with the information that we need to process in our test, for every patient
+########## that has something that we can actually test. This script performs:
+########## - extract WES CCF data (that has already been corrected for CNA and tumour purity)
+########## - calcolate putative clonal SNVs from CCFs
+########## - extract TES counts for mutant and total reads, retain only entries with NV = 0 for clonal SNVs
+########## The script implements also some minimial quality checks, and supervised selection. If a patient has something
+########## that is testable, we salve its Rdata assocaited. Otherwise we don't.
+
 library(vcfR)
 GIT = '~/Documents/GitHub/GBM-Stat-testing'
-CCF.FOLDER = paste(GIT, '/CCFs/', sep = '')
-TES1.FOLDER = paste(GIT, '/TES_1/', sep = '')
-TES2.FOLDER = paste(GIT, '/TES_2/', sep = '')
+CCF.FOLDER = paste(GIT, '/[Data] CCFs/', sep = '')
+TES1.FOLDER = paste(GIT, '/[Data] TES_1/', sep = '')
+TES2.FOLDER = paste(GIT, '/[Data] TES_2/', sep = '')
 
 ######################################################################
 ###################################################################### Patient 42
