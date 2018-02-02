@@ -1,0 +1,3 @@
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/P52.RData")
+ls()
+patient

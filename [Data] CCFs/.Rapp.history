@@ -1,0 +1,30 @@
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CCF-42.RData")
+ls()
+CCF
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CCF-42.RData")
+CCF
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CNA-42.RData")
+ls()
+CNA
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CNA-42.RData")
+CNA
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CNA-54.RData")
+CNA
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CNA-49.RData")
+CNA
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CLONAL-42.RData")
+clonal
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CLONAL-42.RData")
+clonal
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CLONAL-42.RData")
+clonal
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/purity-42.RData")
+purity
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CLONAL-42.RData")
+p.adjust
+purity
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CLONAL-42.RData")
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/purity-42.RData")
+purity
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] CCFs/CCF-42.RData")
+CCF
