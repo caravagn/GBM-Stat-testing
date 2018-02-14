@@ -46,10 +46,57 @@ CCF.plot = function(CCF, patient)
   setwd(cwd)
 }
 
-
+VAF.plot = function(CCF, patient)
+{
+  is.tmr = function(CCF) 
+  {
+    t = grepl('T', colnames(CCF))
+    t1 = grepl('T1', colnames(CCF))
+    t2 = grepl('T2', colnames(CCF))
+    t3 = grepl('T3', colnames(CCF))
+    t4 = grepl('T4', colnames(CCF))
+    t5 = grepl('T5', colnames(CCF))
+    t6 = grepl('T6', colnames(CCF))
+    
+    df = rbind(t, t1, t2, t3, t4, t5, t6)
+    CCF[, apply(df, 2, any), drop = FALSE]
+  }
+  
+  CCF = is.tmr(CCF)
+  CCF = CCF[myorder(CCF), , drop = F]
+  
+  cwd = getwd()
+  setwd(outputPlotsFolder)
+  
+  pheatmap(CCF, 
+           main = patient,
+           na_col = 'darkgray', 
+           color = c('gainsboro', 'steelblue'),
+           # breaks = mybreaks,
+           cluster_rows = FALSE, 
+           # annotation_row = df,
+           # annotation_colors = list(clonal = ann_col),
+           cluster_cols = FALSE, 
+           show_rownames = FALSE,
+           fontsize_row = 4,
+           legend = FALSE,
+           gaps_col = 1:ncol(CCF),
+           border_color = NA, 
+           cellwidth = 20,
+           fontsize = 6,
+           cellheight = .5,
+           file = paste('FinalPlot-VAF', patient, '.pdf', sep = '-'))
+  
+  setwd(cwd)
+}
 
 myorder = function(data) {
   data[is.na(data)] = 0
+  
+  private = rowSums(data)
+  
+  datap = data[names(private[private == 1]), , drop = F]
+  datanp = data[names(private[private != 1]), , drop = F]
   
   scoreCol = function(x) {
     score = 0
@@ -60,8 +107,18 @@ myorder = function(data) {
     }
     return(score)
   }
-  scores = apply(data, 1, scoreCol)
-  order(scores, decreasing=TRUE)
+  
+  scoresnp = apply(datanp, 1, scoreCol)
+  onp = order(c(scoresnp), decreasing=TRUE)
+  
+  scoresp = apply(datap, 1, scoreCol) 
+  op = order(c(scoresp), decreasing=TRUE)
+  
+  
+  fo = c(onp, op + max(onp))
+  fo  
+  
+  order(apply(data, 1, scoreCol), decreasing=TRUE)
 }
 
 
@@ -69,7 +126,7 @@ GIT = '~/Documents/GitHub/GBM-Stat-testing'
 outputPlotsFolder = paste(GIT, '/Plots', sep = '')
 
 CCF.FOLDER = paste(GIT, '/[Data] CCFs/', sep = '')
-# WES.FOLDER = paste(GIT, '/[Data] WES_PASS/', sep = '')
+WES.FOLDER = paste(GIT, '/[Data] WES_PASS/', sep = '')
 # TES1.FOLDER = paste(GIT, '/[Data] TES_1/', sep = '')
 # TES2.FOLDER = paste(GIT, '/[Data] TES_2/', sep = '')
 # 
@@ -92,6 +149,26 @@ for(f in files)
   
   CCF.plot(CCF, pname)
 }
+
+#################### FIRST PLOT with VAF isntead of CCF
+setwd(WES.FOLDER)
+
+files = list.files()
+files = files[endsWith(files, '.RData')]
+files = files[startsWith(files, 'VAF')]
+
+for(f in files) 
+{
+  load(f, verbose = T)
+  
+  pname = strsplit(f, split = '\\.')[[1]][1]
+  
+  VAF[VAF < 0.05] = 0
+  VAF[VAF >= 0.05] = 1
+  
+  VAF.plot(VAF, pname)
+}
+
 
 #################### SECOND PLOT
 
