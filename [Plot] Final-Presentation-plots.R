@@ -44,33 +44,55 @@ is.tmr = function(CCF) {
 }
 
 
-CCF.plot = function(CCF, patient, annotation = NULL)
+CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
 {
-
   cwd = getwd()
   setwd(outputPlotsFolder)
   
-  col = c(`YES` = 'forestgreen', `NO` = 'brown4', `Not Testable` = 'lightgray')
-  col = list(`Significant P-Value` = col)
+  col = list(`Significant P-Value` = c(`YES` = 'gold', `NO` = 'slateblue4', `Not Testable` = 'whitesmoke'),
+             `SNV Status` = c(`ubiquitous` = 'dodgerblue4', `shared` = 'goldenrod4', `private` = 'firebrick', `missing` = 'gainsboro', `NA` = 'darkgray')
+             )
   
-  pheatmap(CCF, 
+  CCF.values = CCF[, endsWith(colnames(CCF), 'CCF-WES')]
+  ncols = ncol(CCF.values)
+  CCF.values = rowSums(CCF.values)
+  SNV.status = data.frame(row.names = rownames(CCF), stringsAsFactors = FALSE)
+  SNV.status[names(which(CCF.values == ncols)), 'SNV Status'] = 'ubiquitous'
+  SNV.status[names(which(CCF.values != ncols & CCF.values > 1)), 'SNV Status'] = 'shared'
+  SNV.status[names(which(CCF.values == 1)), 'SNV Status'] = 'private'
+  SNV.status[names(which(CCF.values == 0)), 'SNV Status'] = 'missing'
+  SNV.status[is.na(SNV.status), 'SNV Status'] = 'NA'
+  
+
+  # !(rownames(annotation) %in%   rownames(SNV.status)) 
+
+  if(is.null(annotation)) {
+    annotation = SNV.status
+  } else  annotation = cbind(SNV.status, annotation[rownames(SNV.status), , drop = FALSE])
+  
+  # annotation = cbind(annotation, CGC = CSQ[rownames(annotation), 'CGC'])
+  
+  pdf(paste('FinalPlot', patient, '.pdf', sep = '-'), width = 20, height = 40)
+  pheatmap::pheatmap(CCF, 
            main = patient,
            na_col = 'darkgray', 
-           color = c('gainsboro', 'steelblue'),
+           color = c('gainsboro', 'steelblue', 'darkcyan'),
            # breaks = mybreaks,
            cluster_rows = FALSE, 
            annotation_row = annotation,
            annotation_colors = col,
            cluster_cols = FALSE, 
            show_rownames = TRUE,
-           fontsize_row = 4,
-           legend = FALSE,
+           fontsize_row = 10,
+           legend = FALSE, 
+           labels_row = CSQ[rownames(CCF), 'CGC'],
+           # legend_labels = c('Missing', 'CCF > .20', 'Binarized Read NV'),
            gaps_col = 1:ncol(CCF),
            border_color = NA, 
            cellwidth = 20,
-           fontsize = 6,
-           cellheight = 4,
-           file = paste('FinalPlot', patient, '.pdf', sep = '-'))
+           fontsize = 16,
+           cellheight = 4)
+  dev.off()
   
   setwd(cwd)
 }
@@ -138,7 +160,57 @@ subsetPanel = function(CCF, PANEL) {
   colnames(df) = colnames(PANEL)
   
   for(i in 1:ncol(PANEL)) df[rownames(PANEL), i] = PANEL[, i]
+
+  df[!(rownames(CCF) %in% rownames(PANEL)), ] = NA
+  
   df
+}
+
+
+namify.wesPanel = function(x, patient, code)
+{
+  for(cl in 1:ncol(x)) 
+  {
+    tke = strsplit(colnames(x)[cl], '_')[[1]]
+    tke = tke[grepl(patient, tke)]
+    tke = gsub(x = tke, patient, '')
+    # colnames(x)[cl] = paste(patient, tke, code, sep ='-')
+    colnames(x)[cl] = paste(tke, code, sep ='-')
+  }
+  x
+}
+
+namify.TES1Panel = function(x, patient, prefix, code)
+{
+  chpat = nchar(patient)
+  chprf = nchar(prefix)
+  
+  for(cl in 1:ncol(x)) 
+  {
+    tke = substr(colnames(x)[cl], 1 + chpat + chprf, nchar(colnames(x)[cl]))
+    # colnames(x)[cl] = paste(patient, tke, code, sep ='-')
+    colnames(x)[cl] = paste(tke, code, sep ='-')
+  }
+  x
+}
+
+# Remove Blood, order as T -> S -> M
+order.columns = function(x)
+{
+  cn = colnames(x)
+
+  # leftmost
+  CCF.values = cn[endsWith(colnames(x), 'CCF-WES')]
+  B.values = cn[startsWith(colnames(x), 'B')]
+  Margin.values = cn[startsWith(colnames(x), 'M')]
+  S.values = cn[startsWith(colnames(x), 'S')]
+  rightmost = setdiff(cn, c(CCF.values, B.values, Margin.values, S.values))
+  
+  Tpaneles.values = cn[startsWith(colnames(x), 'T') & (endsWith(colnames(x), '-TES1') | endsWith(colnames(x), '-TES2'))]
+  
+  
+  # x[, c(CCF.values, B.values, Margin.values, S.values, rightmost)]
+  x[, c(CCF.values, Tpaneles.values, S.values, Margin.values)]
 }
 
 
@@ -149,7 +221,7 @@ CCF.FOLDER = paste(GIT, '/[Data] CCFs/', sep = '')
 WES.FOLDER = paste(GIT, '/[Data] WES_PASS/', sep = '')
 TES1.FOLDER = paste(GIT, '/[Data] TES_1/', sep = '')
 TES2.FOLDER = paste(GIT, '/[Data] TES_2/', sep = '')
-# 
+ANNOTATIONS.FOLDER = paste(GIT, '/[Data] CCFs Annotated', sep = '')
 
 #################### FIRST PLOT
 setwd(CCF.FOLDER)
@@ -161,50 +233,120 @@ files = files[startsWith(files, 'CCF')]
 files = files[files !=  "CCF-A34.RData" ]
 
 CCF.CUTOFF = 0.2
-NV.CUTOFF = 1
+NV.CUTOFF = 2
+TNV.CUTOFF = 10
+TES.VAF.CUTOFF = 0.001
+
 
 for(f in files) 
 {
+  ########################################## CCF values
   load(f, verbose = T)
-  
-  CCF[CCF < CCF.CUTOFF] = 0
-  CCF[CCF >= CCF.CUTOFF] = 1
-  
-  CCF = is.tmr(CCF)
-  
+  CCF.rownames = rownames(CCF)
   pname = strsplit(f, split = '\\.')[[1]][1]
   patient = strsplit(pname, split = '-')[[1]][2]
   
-  # Get the list of real SNVs (no indels) that are in exome regions, etc.
+  CCF[CCF < CCF.CUTOFF] = 0
+  CCF[CCF >= CCF.CUTOFF] = 1
+  head(CCF)
+  
+  CCF = is.tmr(CCF)
+  head(CCF)
+  # colnames(CCF) = paste(patient, colnames(CCF), 'CCF from WES', sep ='-')
+  colnames(CCF) = paste(colnames(CCF), 'CCF-WES', sep ='-')
+  
+  ########################################## Get the list of real SNVs (no indels) that are in exome regions, etc.
   load(paste(WES.FOLDER, '/Exone-SNVs-', patient, '.RData', sep = ''), verbose = TRUE)
   CCF = CCF[SNVs, , drop = FALSE]
   
-  # Get read counts from Margin and S -- WES
+  ########################################## Get read counts from Margin and S -- WES
   load(paste(WES.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
   WES = WES$NV
   WES[WES < NV.CUTOFF] = 0
-  WES[WES >= NV.CUTOFF] = 1
+  WES[WES >= NV.CUTOFF] = 2
+  head(WES)
   
-  # Get read counts from Margin and S -- TES1
+  WES = namify.wesPanel(WES, patient, 'WES')
+  head(WES)
+  
+  if(patient == 'SP28') colnames(WES) = c('M(r)-WES', 'S(r)-WES', 'B-WES', 'M(p)-WES', 'S(r)-WES')
+  if(patient == '56') colnames(WES)[2] = 'M-WES'
+  if(patient == 'A23') colnames(WES)[c(4,5)] = c('M(p)-WES', 'S(p)-WES')
+  
+  
+  ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES1.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
+
+  # cutoff based on VAF
+  TES1.VAF = TES1$NV/TES1$NR
+  TES1.VAF.0 = which(TES1.VAF < TES.VAF.CUTOFF)
+  TES1.VAF.1 = which(TES1.VAF >= TES.VAF.CUTOFF)
   TES1 = TES1$NV
-  TES1[TES1 < NV.CUTOFF] = 0
-  TES1[TES1 >= NV.CUTOFF] = 1
+  TES1[TES1.VAF.0] = 0
+  TES1[TES1.VAF.1] = 2
+  
+  # cutoff based on read-counts
+  # TES1 = TES1$NV
+  # TES1[TES1 < TNV.CUTOFF] = 0
+  # TES1[TES1 >= TNV.CUTOFF] = 2
+   
   TES1 = subsetPanel(CCF, TES1)
+  head(TES1)
   
-  # Get read counts from Margin and S -- TES1
+
+  TES1 = namify.TES1Panel(TES1, patient, 'SP', 'TES1')
+  head(TES1)
+  
+  # 
+  if(patient == 'A23') colnames(TES1) = c('B-TES1', 'M(r)-TES1', 'T(r)-TES1', 'M(p)-TES1',  'S(p)-TES1', 'T(p)-TES1')
+  if(patient == '56') colnames(TES1)[2] = 'M-TES1'
+  if(patient == 'A44')colnames(TES1) = c('B-TES1', 'M-TES1', 'S-TES1', 'T1-TES1', 'T2-TES1','T3-TES1', 'T5-TES1')
+  if(patient == 'SP28') colnames(TES1) = c('M(r)-TES1', 'S(r)-TES1', 'T(r)-TES1', 'B-TES1', 'M(p)-TES1', 'S(p)-TES1', 'T(p)-TES1')
+  
+  ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES2.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
+  
+  # cutoff based on VAF
+  TES2.VAF = TES2$NV/TES2$NR
+  TES2.VAF.0 = which(TES2.VAF < TES.VAF.CUTOFF)
+  TES2.VAF.1 = which(TES2.VAF >= TES.VAF.CUTOFF)
   TES2 = TES2$NV
-  TES2[TES2 < NV.CUTOFF] = 0
-  TES2[TES2 >= NV.CUTOFF] = 1
+  TES2[TES2.VAF.0] = 0
+  TES2[TES2.VAF.1] = 2
+  
+  # cutoff based on read-counts
+  # TES2 = TES2$NV
+  # TES2[TES2 < TNV.CUTOFF] = 0
+  # TES2[TES2 >= TNV.CUTOFF] = 2
+  
   TES2 = subsetPanel(CCF, TES2)
+  head(TES2)
+
+  if(patient == '56') colnames(TES2)[2] = '56M'
+  if(patient == '55') colnames(TES2) = '55S'
   
+  TES2 = namify.TES1Panel(TES2, patient, '', 'TES2')
+  head(TES2)
+  
+  if(patient == 'A23') colnames(TES2) = c('M(p)-TES2', 'S(p)-TES2', 'M(r)-TES2',  'S(r)-TES2', 'T(r)-TES2')
+  if(patient == 'SP28') colnames(TES2) = c('S(p)-TES2', 'M(p)-TES2', 'M(r)-TES2', 'S(r)-TES2')
+  
+  ########################################## Ordering
   CCF = CCF[swantonOrder(CCF), , drop = F]
-  CCF = cbind(CCF, WES[rownames(CCF), ])
-  CCF = cbind(CCF, TES1[rownames(CCF), ])
-  CCF = cbind(CCF, TES2[rownames(CCF), ])
+  CCF = cbind(CCF, WES[rownames(CCF), , drop = FALSE])
+  CCF = cbind(CCF, TES1[rownames(CCF), , drop = FALSE])
+  CCF = cbind(CCF, TES2[rownames(CCF), , drop = FALSE])
+  head(CCF)
   
-  # Test pass/ non pasas
+  ########################################## Annotations
+  load(paste(ANNOTATIONS.FOLDER, '/ANNOTATED-CGC-', patient, '.RData', sep = ''), verbose = T)
+  rownames(CSQ) = CCF.rownames
+  CSG = CSQ[SNVs, ]
+  head(CSQ)
+  
+  # rownames(CCF) = paste(CSQ$CGC, CCF.rownames)
+  
+  ########################################## Test pass/ non pasas
   results.file = paste('../RESULTS_TEST-', patient, '.RData', sep = '')
   annotation = NULL
   
@@ -221,31 +363,17 @@ for(f in files)
     
   }
   
-  CCF.plot(CCF, pname, annotation)
+  ########################################## Plot 
+  CCF = order.columns(CCF)
+  CCF.plot(CCF, paste('PATIENT', patient), annotation, CSQ)
+  
+  
+  ### Export for phylogenetic inference
+  print(head(CCF))
+  print(head(annotation))
+  CCF[CCF > 1] = 1
+  if(!is.null(annotation)) CCF = cbind(CCF, annotation[rownames(CCF), , drop = F])
+  write.csv(CCF, file = paste('../Phylogeny-Table-PATIENT', patient,'.txt', sep = ''))
 }
 
 
-#################### FIRST PLOT with VAF isntead of CCF
-# setwd(WES.FOLDER)
-# 
-# files = list.files()
-# files = files[endsWith(files, '.RData')]
-# files = files[startsWith(files, 'VAF')]
-# 
-# files = files[files !=  "CCF-A34.RData" ]
-# 
-# for(f in files) 
-# {
-#   load(f, verbose = T)
-#   
-#   pname = strsplit(f, split = '\\.')[[1]][1]
-#   patient = strsplit(pname, split = '-')[[1]][2]
-#   
-#   load(paste(WES.FOLDER, '/Exone-SNVs-', patient, '.RData', sep = ''), verbose = TRUE)
-#   VAF = VAF[SNVs, , drop = FALSE]
-#   
-#   VAF[VAF < 0.05] = 0
-#   VAF[VAF >= 0.05] = 1
-#   
-#   VAF.plot(VAF, pname)
-# }

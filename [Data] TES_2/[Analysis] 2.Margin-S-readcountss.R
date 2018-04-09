@@ -24,12 +24,16 @@ for(patient in patients)
   
   # TES2 contains SNVs from other patients, we do not want to use them
   load(paste('../[Data] CCFs/CCF-', patient, '.RData', sep = ''), verbose = TRUE)
+  TES2.VCF$NV = TES2.VCF$NV[rownames(TES2.VCF$NV) %in% rownames(CCF), , drop = FALSE]
   TES2.VCF$NR = TES2.VCF$NR[rownames(TES2.VCF$NR) %in% rownames(CCF), , drop = FALSE]
   
   # Get margin/S ones
-  NV = margin.s(TES2.VCF$NV)
-  NR = margin.s(TES2.VCF$NR)
+  # NV = margin.s(TES2.VCF$NV)
+  # NR = margin.s(TES2.VCF$NR)
+  NV = TES2.VCF$NV
+  NR = TES2.VCF$NR
   
+    
   colnames(NV) = colnames(NR) # same orderings
   
   TES2 = list(NV, NR)

@@ -5,7 +5,6 @@ ismargin = function(x)
   x[, grepl('M', colnames(x)), drop = FALSE]
 }
 
-
 ## NOTE: file patient_SP19_platypus was renamed to patient_A23_platypus because that's thes same patient
 patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 
@@ -21,8 +20,8 @@ for(patient in patients)
 
   # in the margin -- WithMutantAllele/ 0 reads in the margin
   NV = ismargin(TES1.VCF$NV)
-  WithMutantAllele = rownames(NV[rowSums(NV) > 0, , drop = F])
-  NV = NV[rowSums(NV) == 0, , drop = F]
+  WithMutantAllele = rownames(NV[rowSums(NV) >= MIN.READS.CUTOFF.TESTABLE, , drop = F])
+  NV = NV[rowSums(NV) < MIN.READS.CUTOFF.TESTABLE, , drop = F]
   
   TES1.NR = ismargin(TES1.VCF$NR)
   TES1.NR = TES1.NR[rownames(NV), , drop = F]

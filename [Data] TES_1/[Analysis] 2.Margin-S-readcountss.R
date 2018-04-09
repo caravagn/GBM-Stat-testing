@@ -17,8 +17,10 @@ for(patient in patients)
   TES1.VCF$NR <- extract.gt(TES1, element='NR', as.numeric=TRUE)
   
   # Get clonal ones
-  NV = margin.s(TES1.VCF$NV)
-  NR = margin.s(TES1.VCF$NR)
+  # NV = margin.s(TES1.VCF$NV)
+  # NR = margin.s(TES1.VCF$NR)
+  NV = TES1.VCF$NV
+  NR = TES1.VCF$NR
   
   colnames(NV) = colnames(NR) # same orderings
   

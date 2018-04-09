@@ -1,5 +1,6 @@
 ########## Author: Giulio Caravagna, ICR. <giulio.caravagna@icr.ac.uk> or <gcaravagn@gmail.com>
 ##########
+source('[Analysis] GBM Testing Library.R')
 
 
 getData = function(patient) {
@@ -59,7 +60,7 @@ BBpval = function(TES, fit)
   samples = colnames(toTest)
   training.samples = unique(fit$sample)
   
-  cat(bgRed(' [Beta-Binomial H0 for true positive testing] '), green(paste(SNVs, collapse = ',')), '\n')
+  cat(bgRed(' [Beta-Binomial H0 for true positive testing] '), green(paste(SNVs, collapse = ' | ')), '\n')
   
   
   ret = lapply(SNVs,
@@ -84,13 +85,17 @@ BBpval = function(TES, fit)
            
            tests$pvalue = apply(tests, 1, function(x) {
              
-             # H0 -- no reads given the expected Beta-Binomial distribution
-             VGAM::dbetabinom(
-               0, 
+             if(as.numeric(x['coverage']) < MIN.READS.CUTOFF.TESTABLE) return(1)
+             
+             # H0 -- no 1..K reads given the expected Beta-Binomial distribution
+             #
+             # H0: sum_{i=1}^K P(i | Beta-Bin)  
+             sum(VGAM::dbetabinom(
+               0:(MIN.READS.CUTOFF.TESTABLE - 1), 
                as.numeric(x['coverage']), 
                prob = as.numeric(x['mu']), 
                rho = as.numeric(x['rho']), 
-               log = FALSE)
+               log = FALSE))
            })
            
            tests
@@ -119,6 +124,18 @@ MHT = function(pvalues, significance = 0.05)
 }
   
 
+merger = function(d1, from, d2, to) {
+  # in both panels
+  mx = intersect(rownames(d1), rownames(d2))
+  
+  for(m in mx)
+    d2[m, to] = d2[m, to] + d1[m, from]
+
+  u1 = d1[!(rownames(d1) %in% mx), , drop = FALSE]
+  d2 = rbind(d2, u1)
+  d2
+}
+
 
 library(WriteXLS)
 
@@ -130,6 +147,7 @@ D = getData(patient = '42') # Nothing to do
 ####################################################################
 D = getData(patient = '49')
 D$TES2$NR     # Testable
+D$TES2$NR = merger(D$TES1$NR, from = 'SP49M', D$TES2$NR, to = 'X49M')
 D$fit
 
 Summary = MHT(BBpval(D$TES2$NR, D$fit))
@@ -140,7 +158,7 @@ save(Summary, file = 'RESULTS_TEST-49.RData')
 ####################################################################
 D = getData(patient = '52')
 D$TES2$NR
-D$TES2$NR['chr2_136610419', 'X52M'] = D$TES1$NR['chr2_136610419', 'SP52M'] + 20
+D$TES2$NR = merger(D$TES1$NR, from = 'SP52M', D$TES2$NR, to = 'X52M')
 D$TES2$NR
 
 Summary = MHT(BBpval(D$TES2$NR, D$fit))
@@ -156,7 +174,8 @@ D = getData(patient = '55')
 
 ####################################################################
 D = getData(patient = '56')
-D$TES2$NR['chr14_75573266', 'X56M3'] = D$TES2$NR['chr14_75573266', 'X56M3'] + D$TES1$NR['chr14_75573266', 'SP56M3']
+D$TES2$NR = merger(D$TES1$NR, from = 'SP56M3', D$TES2$NR, to = 'X56M3')
+D$TES2$NR 
 
 Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
@@ -165,8 +184,8 @@ save(Summary, file = 'RESULTS_TEST-56.RData')
 
 ####################################################################
 D = getData(patient = '57')
-D$TES2$NR['chr17_36873741', 'X57M'] = D$TES2$NR['chr17_36873741', 'X57M'] + D$TES1$NR['chr17_36873741', 'SP57M'] + 20
-D$TES2$NR['chr19_17769024', 'X57M'] = D$TES2$NR['chr19_17769024', 'X57M'] + D$TES1$NR['chr19_17769024', 'SP57M'] + 20
+D$TES2$NR = merger(D$TES1$NR, from = 'SP57M', D$TES2$NR, to = 'X57M')
+D$TES2$NR
 
 Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
@@ -181,17 +200,27 @@ D = getData(patient = 'A34')
 
 ####################################################################
 D = getData(patient = 'A44')
+D$TES2$NR = merger(D$TES1$NR, from = 'A44M', D$TES2$NR, to = 'A44M')
+
+Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
 WriteXLS(Summary, 'GBM_testing_results-A44.xls')
-Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
 ####################################################################
 D = getData(patient = 'SP28')
 D
 
-Summary = MHT(BBpval(
-  cbind(D$TES2$NR[, c('A28M', 'R11M')], D$TES1$NR[, c('SP28recM', 'SP28primM', 'CNA')]), 
-  D$fit))
+# multiple columns, we merge by hand: 
+D$TES1$NR[, 'SP28recM'] = rowSums(D$TES1$NR[, c('SP28recM', 'SP28primM')])
+D$TES1$NR$SP28primM = NULL
+
+D$TES2$NR[, 'A28M'] = rowSums(D$TES2$NR[, c('A28M', 'R11M')])
+D$TES2$NR$R11M = NULL
+
+D$TES2$NR = merger(D$TES1$NR, from = 'SP28recM', D$TES2$NR, to = 'A28M')
+
+
+Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
 WriteXLS(Summary, 'GBM_testing_results-SP28.xls')
 save(Summary, file = 'RESULTS_TEST-SP28.RData')

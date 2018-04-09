@@ -9,6 +9,8 @@ ismargin = function(x)
 patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 library(vcfR)
 
+MIN.READS.CUTOFF.TESTABLE = 10
+
 for(patient in patients)
 {  
   file = paste(patient, '.platypus.vcf', sep = '')
@@ -28,8 +30,8 @@ for(patient in patients)
   
   # in the margin -- WithMutantAllele/ 0 reads in the margin
   NV = ismargin(TES2.VCF$NV)
-  WithMutantAllele = rownames(NV[rowSums(NV) > 0, , drop = F])
-  NV = NV[rowSums(NV) == 0, , drop = F]
+  WithMutantAllele = rownames(NV[rowSums(NV) >= MIN.READS.CUTOFF.TESTABLE, , drop = F])
+  NV = NV[rowSums(NV) < MIN.READS.CUTOFF.TESTABLE, , drop = F]
   
   TES2.NR = ismargin(TES2.VCF$NR)
   TES2.NR = TES2.NR[rownames(NV), , drop = F]
