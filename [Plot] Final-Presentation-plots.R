@@ -64,15 +64,24 @@ CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
   SNV.status[is.na(SNV.status), 'SNV Status'] = 'NA'
   
 
+  CSQ.specific.GBM = c('ATRX', 'TP53', 'MMR', 'LTBP4', 'PIK3CA', 'PIK3R1', 'PDGFRA', 'EGFR', 'NF1', 'PTPN11', 'PTEN', 'RB1', 'TERT')
+  CSQ.names = CSQ[rownames(CCF), 'CGC']
+  CSQ.names = sapply(CSQ.names, function(s) if(nchar(s) > 0 & (s %in% CSQ.specific.GBM)) {paste('-', s);} else "")
+  names(CSQ.names) = NULL
+  
   # !(rownames(annotation) %in%   rownames(SNV.status)) 
 
   if(is.null(annotation)) {
-    annotation = SNV.status
+    annotation.null = data.frame(`Significant P-Value` = rep('Not Testable', nrow(SNV.status)), stringsAsFactors = FALSE)
+    rownames(annotation.null) = rownames(SNV.status)
+    colnames(annotation.null) = "Significant P-Value"
+    
+    annotation = cbind(SNV.status, annotation.null)
+    # annotation = SNV.status
   } else  annotation = cbind(SNV.status, annotation[rownames(SNV.status), , drop = FALSE])
   
   # annotation = cbind(annotation, CGC = CSQ[rownames(annotation), 'CGC'])
   
-  pdf(paste('FinalPlot', patient, '.pdf', sep = '-'), width = 20, height = 40)
   pheatmap::pheatmap(CCF, 
            main = patient,
            na_col = 'darkgray', 
@@ -85,15 +94,17 @@ CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
            show_rownames = TRUE,
            fontsize_row = 10,
            legend = FALSE, 
-           labels_row = CSQ[rownames(CCF), 'CGC'],
+           labels_row = CSQ.names,
            # legend_labels = c('Missing', 'CCF > .20', 'Binarized Read NV'),
            gaps_col = 1:ncol(CCF),
            border_color = NA, 
            cellwidth = 20,
            fontsize = 16,
-           cellheight = 4)
-  dev.off()
-  
+           cellheight = 4,
+           file = paste('FinalPlot', patient, '.pdf', sep = '-'), 
+           width = 20, height = 40 
+           )
+
   setwd(cwd)
 }
 
