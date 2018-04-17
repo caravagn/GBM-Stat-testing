@@ -45,7 +45,6 @@ subsetTargetRegions = function(pos, bed_file) {
 
 
 BEDFILE = '../S04380110_Covered.bed'
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
 
 for(patient in patients)
 {  
@@ -60,7 +59,7 @@ for(patient in patients)
   SNVsloc = getSNVsonly(WES)
   WES.VCF$NV = WES.VCF$NV[SNVsloc, ]
   WES.VCF$NR = WES.VCF$NR[SNVsloc, ]
-  
+  # 
   Targetsloc = subsetTargetRegions(rownames(WES.VCF$NV), BEDFILE)
   WES.VCF$NV = WES.VCF$NV[Targetsloc, ]
   WES.VCF$NR = WES.VCF$NR[Targetsloc, ]

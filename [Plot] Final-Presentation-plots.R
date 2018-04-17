@@ -241,7 +241,7 @@ files = list.files()
 files = files[endsWith(files, '.RData')]
 files = files[startsWith(files, 'CCF')]
 
-files = files[files !=  "CCF-A34.RData" ]
+# files = files[files !=  "CCF-A34.RData" ]
 
 CCF.CUTOFF = 0.2
 NV.CUTOFF = 2
@@ -266,6 +266,10 @@ for(f in files)
   # colnames(CCF) = paste(patient, colnames(CCF), 'CCF from WES', sep ='-')
   colnames(CCF) = paste(colnames(CCF), 'CCF-WES', sep ='-')
   
+  # if(patient == 'A23') colnames(CCF) = c('M(p)-TES2', 'S(p)-TES2', 'M(r)-TES2',  'S(r)-TES2', 'T(r)-TES2')
+  if(patient == 'A23') colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
+  if(patient == 'SP28') colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
+  
   ########################################## Get the list of real SNVs (no indels) that are in exome regions, etc.
   load(paste(WES.FOLDER, '/Exone-SNVs-', patient, '.RData', sep = ''), verbose = TRUE)
   CCF = CCF[SNVs, , drop = FALSE]
@@ -280,10 +284,10 @@ for(f in files)
   WES = namify.wesPanel(WES, patient, 'WES')
   head(WES)
   
-  if(patient == 'SP28') colnames(WES) = c('M(r)-WES', 'S(r)-WES', 'B-WES', 'M(p)-WES', 'S(r)-WES')
+  if(patient == 'SP28') colnames(WES) = c('M recurrent-WES', 'S recurrent-WES', 'B-WES', 'M primary-WES', 'S primary-WES')
   if(patient == '56') colnames(WES)[2] = 'M-WES'
-  if(patient == 'A23') colnames(WES)[c(4,5)] = c('M(p)-WES', 'S(p)-WES')
-  
+  if(patient == 'A23') colnames(WES)[2:5] = c('M recurrent-WES', 'S recurrent-WES', 'M primary-WES', 'S primary-WES')
+
   
   ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES1.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
@@ -304,15 +308,14 @@ for(f in files)
   TES1 = subsetPanel(CCF, TES1)
   head(TES1)
   
-
   TES1 = namify.TES1Panel(TES1, patient, 'SP', 'TES1')
   head(TES1)
   
-  # 
-  if(patient == 'A23') colnames(TES1) = c('B-TES1', 'M(r)-TES1', 'T(r)-TES1', 'M(p)-TES1',  'S(p)-TES1', 'T(p)-TES1')
+  if(patient == 'A34') colnames(TES1) = c('S1-TES1', 'S2-TES1', 'S3-TES1', 'T1-TES1',  'T2-TES1', 'T3-TES1','T5-TES1', 'T6-TES1')
+  if(patient == 'A23') colnames(TES1) = c('B-TES1', 'M recurrent-TES1', 'T recurrent-TES1', 'M primary-TES1',  'S primary-TES1', 'T primary-TES1')
   if(patient == '56') colnames(TES1)[2] = 'M-TES1'
   if(patient == 'A44')colnames(TES1) = c('B-TES1', 'M-TES1', 'S-TES1', 'T1-TES1', 'T2-TES1','T3-TES1', 'T5-TES1')
-  if(patient == 'SP28') colnames(TES1) = c('M(r)-TES1', 'S(r)-TES1', 'T(r)-TES1', 'B-TES1', 'M(p)-TES1', 'S(p)-TES1', 'T(p)-TES1')
+  if(patient == 'SP28') colnames(TES1) = c('M recurrent-TES1', 'S recurrent-TES1', 'T recurrent-TES1', 'B-TES1', 'M primary-TES1', 'S primary-TES1', 'T primary-TES1')
   
   ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES2.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
@@ -333,14 +336,15 @@ for(f in files)
   TES2 = subsetPanel(CCF, TES2)
   head(TES2)
 
-  if(patient == '56') colnames(TES2)[2] = '56M'
+  if(patient == '56') colnames(TES2)[1] = '56M'
   if(patient == '55') colnames(TES2) = '55S'
   
   TES2 = namify.TES1Panel(TES2, patient, '', 'TES2')
   head(TES2)
   
-  if(patient == 'A23') colnames(TES2) = c('M(p)-TES2', 'S(p)-TES2', 'M(r)-TES2',  'S(r)-TES2', 'T(r)-TES2')
-  if(patient == 'SP28') colnames(TES2) = c('S(p)-TES2', 'M(p)-TES2', 'M(r)-TES2', 'S(r)-TES2')
+  if(patient == 'A23') colnames(TES2) = c('M primary-TES2', 'S primary-TES2', 'M recurrent-TES2',  'S recurrent-TES2', 'T recurrent-TES2')
+  if(patient == 'SP28') colnames(TES2) = c('S primary-TES2', 'M primary-TES2', 'M recurrent-TES2', 'S recurrent-TES2')
+  # if(patient == 'A34') colnames(TES2) = c('T2-TES2', 'T3-TES2')
   
   ########################################## Ordering
   CCF = CCF[swantonOrder(CCF), , drop = F]
@@ -350,10 +354,13 @@ for(f in files)
   head(CCF)
   
   ########################################## Annotations
-  load(paste(ANNOTATIONS.FOLDER, '/ANNOTATED-CGC-', patient, '.RData', sep = ''), verbose = T)
-  rownames(CSQ) = CCF.rownames
-  CSG = CSQ[SNVs, ]
-  head(CSQ)
+  CSQ = NULL
+  if(file.exists(paste(ANNOTATIONS.FOLDER, '/ANNOTATED-CGC-', patient, '.RData', sep = ''))) {
+    load(paste(ANNOTATIONS.FOLDER, '/ANNOTATED-CGC-', patient, '.RData', sep = ''), verbose = T)
+    rownames(CSQ) = CCF.rownames
+    CSG = CSQ[SNVs, ]
+    head(CSQ)
+  }
   
   # rownames(CCF) = paste(CSQ$CGC, CCF.rownames)
   
@@ -386,5 +393,47 @@ for(f in files)
   if(!is.null(annotation)) CCF = cbind(CCF, annotation[rownames(CCF), , drop = F])
   write.csv(CCF, file = paste('../Phylogeny-Table-PATIENT', patient,'.txt', sep = ''))
 }
+
+
+
+
+
+###### EXAMPLE POWER-PLOT
+setwd(GIT)
+mu = 0.5
+rho = .05
+
+x = seq(10, 500, by = 10)
+y = NULL
+for(c in x)
+  y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
+
+# plot(x, y, log = 'xy', type = 'l')
+
+plot(log(x), log(y), type = 'l', xaxt = 'n', yaxt = 'n', xlab = 'Coverage (adjusted for purity)', ylab = 'P-value')
+points(log(x), log(y), pch = 18, col = 'orange')
+
+axis(1, x, at = log(x))
+
+vals = c(1, 0.05, 1e-2, 1e-3, 1e-4, 1e-6, 1e-8, 1e-10, 1e-12) 
+axis(2, vals, at = log(vals))
+abline(h = log(0.05), col = 'red', lty = 2)
+title(bquote(bold('Test power for') ~ mu ~'= 0.5 and'~ rho~ '=5 x'~10^{-2} ~ italic('at significance level')~ alpha ~' = 0.05'))
+      # sub = bquote(bold('Significance level:'~ alpha ~' = 0.05'))
+      # )
+
+load('RESULTS_TEST-52.RData', verbose = T)
+Summary
+
+real.points = unlist(lapply(Summary, function(w) w$coverage[1]))
+y = NULL
+for(c in real.points)
+  y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
+
+red.p = log(y) > log(0.05)
+points(log(real.points)[red.p], log(y)[red.p], pch = 19, col = 'red', cex = 2)
+points(log(real.points)[!red.p], log(y)[!red.p], pch = 19, col = 'darkgreen', cex = 2)
+
+dev.copy2pdf(file = 'test.pdf')
 
 

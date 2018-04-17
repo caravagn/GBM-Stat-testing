@@ -2,7 +2,6 @@
 ##########
 source('[Analysis] GBM Testing Library.R')
 
-
 getData = function(patient) {
   load(paste('[Data] TES_1/NR-', patient, '.RData', sep = ''), verbose = T)
   load(paste('[Data] TES_2/NR-', patient, '.RData', sep = ''), verbose = T)
@@ -196,7 +195,7 @@ save(Summary, file = 'RESULTS_TEST-57.RData')
 D = getData(patient = 'A23')
 
 ####################################################################
-D = getData(patient = 'A34')
+# D = getData(patient = 'A34')
 
 ####################################################################
 D = getData(patient = 'A44')

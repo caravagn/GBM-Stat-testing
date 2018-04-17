@@ -41,15 +41,11 @@ subsetTargetRegions = function(pos, bed_file) {
   
 }
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 
 
 for(patient in patients)
 {
   load(paste('CCF-', patient, '.RData', sep = ''), verbose = T)
-  
-  
-  
   
   load(paste('CNA-', patient, '.RData', sep = ''))
   

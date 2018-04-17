@@ -4,12 +4,7 @@ ismargin = function(x)
   x[, grepl('M', colnames(x)), drop = FALSE]
 }
 
-## NOTE: file A23_SP19.platypus was renamed to A23.platypus because that's thes same patient
-## NOTE: file SP28_R11.platypus was renamed to SP28.platypus because that's thes same patient
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 library(vcfR)
-
-MIN.READS.CUTOFF.TESTABLE = 10
 
 for(patient in patients)
 {  

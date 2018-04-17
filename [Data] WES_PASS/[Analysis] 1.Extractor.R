@@ -6,8 +6,6 @@ primary = function(x)
 }
 
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
-
 for(patient in patients)
 {  
   file = paste('NG-8132_', patient, '.mutect2.platypus_PASS.vcf', sep = '')
@@ -24,10 +22,19 @@ for(patient in patients)
   load(paste('../[Data] CCFs/CLONAL-', patient, '.RData', sep = ''))
   clonal
   
-  NV = cbind(primary(WES.VCF$NV)[rownames(clonal), ], clonal$CNA)
-  NR = cbind(primary(WES.VCF$NR)[rownames(clonal), ], clonal$CNA)
-
+  dfNV = as.data.frame(primary(WES.VCF$NV)[rownames(clonal), ])
+  dfNR = as.data.frame(primary(WES.VCF$NR)[rownames(clonal), ])
+  
+  if(nrow(clonal) == 1) {
+    dfNV = t(dfNV)
+    dfNR = t(dfNR)
+  }
+  
+  NV = cbind(dfNV, data.frame(CNA = clonal$CNA))
+  NR = cbind(dfNR, data.frame(CNA = clonal$CNA))
+  
   colnames(NV) = colnames(NR) = colnames(clonal) # same orderings
+  rownames(NV) = rownames(NR) = rownames(clonal)
   
   WES = list(NV, NR)
   names(WES) = c('NV', 'NR')

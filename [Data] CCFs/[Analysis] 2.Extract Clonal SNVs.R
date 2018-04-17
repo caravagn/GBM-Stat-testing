@@ -1,6 +1,4 @@
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
-
 
 for(patient in patients)
 {

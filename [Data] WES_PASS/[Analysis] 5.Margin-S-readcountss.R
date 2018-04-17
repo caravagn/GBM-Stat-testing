@@ -5,8 +5,6 @@ margin.s = function(x)
   x[, !grepl('T', colnames(x)), drop = FALSE]
 }
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
-
 for(patient in patients)
 {  
   file = paste('NG-8132_', patient, '.mutect2.platypus_PASS.vcf', sep = '')

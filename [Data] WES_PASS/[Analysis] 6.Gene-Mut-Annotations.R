@@ -1,9 +1,5 @@
 library(vcfR)
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
-
-patient = '42'
-
 for(patient in patients)
 {  
   file = paste('NG-8132_', patient, '.mutect2.platypus_PASS.vcf', sep = '')

@@ -1,4 +1,4 @@
-"","T1-CCF-WES","T2-CCF-WES","T(r)-TES1","T(p)-TES1","T(r)-TES2","S-WES","S(p)-WES","S(p)-TES1","S(p)-TES2","S(r)-TES2","M-WES","M(p)-WES","M(r)-TES1","M(p)-TES1","M(p)-TES2","M(r)-TES2"
+"","T recurrent-CCF-WES","T primary-CCF-WES","T recurrent-TES1","T primary-TES1","T recurrent-TES2","S recurrent-WES","S primary-WES","S primary-TES1","S primary-TES2","S recurrent-TES2","M recurrent-WES","M primary-WES","M recurrent-TES1","M primary-TES1","M primary-TES2","M recurrent-TES2"
 "chr1_3397145",1,1,NA,NA,1,0,0,NA,0,1,0,1,NA,NA,1,0
 "chr1_19166493",1,1,1,1,1,0,1,1,1,1,0,1,0,1,1,0
 "chr1_26380354",1,1,NA,NA,NA,0,1,NA,NA,NA,0,1,NA,NA,NA,NA

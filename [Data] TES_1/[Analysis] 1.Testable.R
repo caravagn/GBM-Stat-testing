@@ -5,9 +5,6 @@ ismargin = function(x)
   x[, grepl('M', colnames(x)), drop = FALSE]
 }
 
-## NOTE: file patient_SP19_platypus was renamed to patient_A23_platypus because that's thes same patient
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
-
 
 for(patient in patients)
 {  
