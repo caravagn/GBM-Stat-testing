@@ -1,3 +1,5 @@
 load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] TES_1/NR-A23.RData")
 ls()
 TES1.NR
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] TES_1/MARGIN_S_READCOUNTS-SP28.RData")
+TES1

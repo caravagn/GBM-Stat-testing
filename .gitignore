@@ -10,3 +10,4 @@
 *.csv
 [Data] CCFs Annotated/COSMIC.RData
 [Data] CCFs Annotated/COSMIC.RData
+*.history
