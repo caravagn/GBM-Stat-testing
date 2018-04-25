@@ -1,3 +1,6 @@
 load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] WES_PASS/READCOUNTS-56.RData")
 ls()
 WES
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/[Data] WES_PASS/MARGIN_S_READCOUNTS-SP28.RData")
+ls()
+WES

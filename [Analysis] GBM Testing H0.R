@@ -139,7 +139,6 @@ merger = function(d1, from, d2, to) {
 library(WriteXLS)
 
 
-
 ####################################################################
 D = getData(patient = '42') # Nothing to do
 
@@ -170,6 +169,7 @@ D = getData(patient = '54')
 
 ####################################################################
 D = getData(patient = '55')
+
 
 ####################################################################
 D = getData(patient = '56')
@@ -204,6 +204,7 @@ D$TES2$NR = merger(D$TES1$NR, from = 'A44M', D$TES2$NR, to = 'A44M')
 Summary = MHT(BBpval(D$TES2$NR, D$fit))
 
 WriteXLS(Summary, 'GBM_testing_results-A44.xls')
+save(Summary, file = 'RESULTS_TEST-A44.RData')
 
 ####################################################################
 D = getData(patient = 'SP28')
