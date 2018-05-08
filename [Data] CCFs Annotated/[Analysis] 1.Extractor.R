@@ -7,7 +7,7 @@ library(vcfR)
 CGC = read.csv('Census_allWed Mar 28 10-44-54 2018.csv', header = TRUE, sep = ',')
 head(CGC)
 
-patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
+# patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A44', 'SP28')
 
 for(patient in patients)
 {  

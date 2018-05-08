@@ -161,6 +161,18 @@ ms = function(x)
   x[, apply(df, 2, any), drop = FALSE]
 }
 
+### Rename all S to SVZ
+replace_S_SVZ = function(w) {
+  S = substr(w, 1, 1)
+  S2 = substr(w, 2, 2)
+  
+  wt = substr(w, 2, nchar(w))
+  
+  if(substr(w, 1, 3) != 'SVZ' && S == 'S' && S2 != 'V') 
+    return(paste('SVZ', wt, sep = ''))
+  else
+    w
+}
 
 subsetPanel = function(CCF, PANEL) {
   
@@ -224,6 +236,31 @@ order.columns = function(x)
   x[, c(CCF.values, Tpaneles.values, S.values, Margin.values)]
 }
 
+dumpCoverage = function(panel, id){
+  meanCovTES1 = apply(panel, 2, mean)
+  medianCovTES1 = apply(panel, 2, median)
+  
+  file = paste('../Coverage-', id, '.txt', sep = '')
+  
+  cat(paste('\n', patient, 'mean coverage\n'), file = file, append = TRUE, sep = "\n")
+  cat(
+    paste(names(meanCovTES1), meanCovTES1), 
+    file = file, append = TRUE, sep = "\n")
+  
+  cat(paste('\n', patient, 'median coverage\n'), file = file, append = TRUE, sep = "\n")
+  cat(
+    paste(names(medianCovTES1), medianCovTES1), 
+    file = file, append = TRUE, sep = "\n")
+  
+  cat(paste('\n', patient, 'mean coverage across all samples\n'), file = file, append = TRUE, sep = "\n")
+  cat(mean(meanCovTES1), 
+      file = file, append = TRUE, sep = "\n")
+  
+  cat(paste('\n', patient, 'median coverage across all samples\n'), file = file, append = TRUE, sep = "\n")
+  cat(mean(medianCovTES1), 
+      file = file, append = TRUE, sep = "\n")
+}
+
 
 GIT = '~/Documents/GitHub/GBM-Stat-testing'
 outputPlotsFolder = paste(GIT, '/Plots', sep = '')
@@ -267,8 +304,14 @@ for(f in files)
   colnames(CCF) = paste(colnames(CCF), 'CCF-WES', sep ='-')
   
   # if(patient == 'A23') colnames(CCF) = c('M(p)-TES2', 'S(p)-TES2', 'M(r)-TES2',  'S(r)-TES2', 'T(r)-TES2')
-  if(patient == 'A23') colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
-  if(patient == 'SP28') colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
+  if(patient == 'A23') {
+    colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
+    CCF = CCF[, c(2, 1)]
+  }
+  if(patient == 'SP28') {
+    colnames(CCF) = c('T recurrent-CCF-WES', 'T primary-CCF-WES')
+    CCF = CCF[, c(2, 1)]
+  }
   
   ########################################## Get the list of real SNVs (no indels) that are in exome regions, etc.
   load(paste(WES.FOLDER, '/Exone-SNVs-', patient, '.RData', sep = ''), verbose = TRUE)
@@ -284,26 +327,33 @@ for(f in files)
   WES = namify.wesPanel(WES, patient, 'WES')
   head(WES)
   
-  if(patient == 'SP28') colnames(WES) = c('M recurrent-WES', 'S recurrent-WES', 'B-WES', 'M primary-WES', 'S primary-WES')
   if(patient == '56') colnames(WES)[2] = 'M-WES'
-  if(patient == 'A23') colnames(WES)[2:5] = c('M recurrent-WES', 'S recurrent-WES', 'M primary-WES', 'S primary-WES')
-
+  if(patient == 'A23') {
+    colnames(WES)[2:5] = c('M recurrent-WES', 'S recurrent-WES', 'M primary-WES', 'S primary-WES')
+    WES = WES[, c('B-WES', 'M primary-WES', 'S primary-WES', 'M recurrent-WES', 'S recurrent-WES')] 
+  }
+  if(patient == 'SP28') {
+    colnames(WES) = c('M recurrent-WES', 'S recurrent-WES', 'B-WES', 'M primary-WES', 'S primary-WES')
+    WES = WES[, c('B-WES', 'M primary-WES', 'S primary-WES', 'M recurrent-WES', 'S recurrent-WES')]
+  }
   
   ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES1.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
 
   # cutoff based on VAF
-  TES1.VAF = TES1$NV/TES1$NR
-  TES1.VAF.0 = which(TES1.VAF < TES.VAF.CUTOFF)
-  TES1.VAF.1 = which(TES1.VAF >= TES.VAF.CUTOFF)
-  TES1 = TES1$NV
-  TES1[TES1.VAF.0] = 0
-  TES1[TES1.VAF.1] = 2
-  
-  # cutoff based on read-counts
+  # TES1.VAF = TES1$NV/TES1$NR
+  # TES1.VAF.0 = which(TES1.VAF < TES.VAF.CUTOFF)
+  # TES1.VAF.1 = which(TES1.VAF >= TES.VAF.CUTOFF)
   # TES1 = TES1$NV
-  # TES1[TES1 < TNV.CUTOFF] = 0
-  # TES1[TES1 >= TNV.CUTOFF] = 2
+  # TES1[TES1.VAF.0] = 0
+  # TES1[TES1.VAF.1] = 2
+  
+  dumpCoverage(TES1$NR, 'TES1')
+
+  # cutoff based on read-counts
+  TES1 = TES1$NV
+  TES1[TES1 < TNV.CUTOFF] = 0
+  TES1[TES1 >= TNV.CUTOFF] = 2
    
   TES1 = subsetPanel(CCF, TES1)
   head(TES1)
@@ -312,26 +362,34 @@ for(f in files)
   head(TES1)
   
   if(patient == 'A34') colnames(TES1) = c('S1-TES1', 'S2-TES1', 'S3-TES1', 'T1-TES1',  'T2-TES1', 'T3-TES1','T5-TES1', 'T6-TES1')
-  if(patient == 'A23') colnames(TES1) = c('B-TES1', 'M recurrent-TES1', 'T recurrent-TES1', 'M primary-TES1',  'S primary-TES1', 'T primary-TES1')
+  if(patient == 'A23') {
+    colnames(TES1) = c('B-TES1', 'M recurrent-TES1', 'T recurrent-TES1', 'M primary-TES1',  'S primary-TES1', 'T primary-TES1')
+    TES1 = TES1[, c('B-TES1',  'M primary-TES1',  'S primary-TES1', 'T primary-TES1', 'M recurrent-TES1', 'T recurrent-TES1')]
+  }
   if(patient == '56') colnames(TES1)[2] = 'M-TES1'
   if(patient == 'A44')colnames(TES1) = c('B-TES1', 'M-TES1', 'S-TES1', 'T1-TES1', 'T2-TES1','T3-TES1', 'T5-TES1')
-  if(patient == 'SP28') colnames(TES1) = c('M recurrent-TES1', 'S recurrent-TES1', 'T recurrent-TES1', 'B-TES1', 'M primary-TES1', 'S primary-TES1', 'T primary-TES1')
+  if(patient == 'SP28') {
+    colnames(TES1) = c('M recurrent-TES1', 'S recurrent-TES1', 'T recurrent-TES1', 'B-TES1', 'M primary-TES1', 'S primary-TES1', 'T primary-TES1')
+    TES1 = TES1[, c('M primary-TES1', 'S primary-TES1', 'T primary-TES1', 'M recurrent-TES1', 'S recurrent-TES1', 'T recurrent-TES1', 'B-TES1')]
+  }
   
   ########################################## Get read counts from Margin and S -- TES1
   load(paste(TES2.FOLDER, '/MARGIN_S_READCOUNTS-', patient, '.RData', sep = ''), verbose = TRUE)
   
   # cutoff based on VAF
-  TES2.VAF = TES2$NV/TES2$NR
-  TES2.VAF.0 = which(TES2.VAF < TES.VAF.CUTOFF)
-  TES2.VAF.1 = which(TES2.VAF >= TES.VAF.CUTOFF)
-  TES2 = TES2$NV
-  TES2[TES2.VAF.0] = 0
-  TES2[TES2.VAF.1] = 2
+  # TES2.VAF = TES2$NV/TES2$NR
+  # TES2.VAF.0 = which(TES2.VAF < TES.VAF.CUTOFF)
+  # TES2.VAF.1 = which(TES2.VAF >= TES.VAF.CUTOFF)
+  # TES2 = TES2$NV
+  # TES2[TES2.VAF.0] = 0
+  # TES2[TES2.VAF.1] = 2
+  
+  dumpCoverage(TES2$NR, 'TES2')
   
   # cutoff based on read-counts
-  # TES2 = TES2$NV
-  # TES2[TES2 < TNV.CUTOFF] = 0
-  # TES2[TES2 >= TNV.CUTOFF] = 2
+  TES2 = TES2$NV
+  TES2[TES2 < TNV.CUTOFF] = 0
+  TES2[TES2 >= TNV.CUTOFF] = 2
   
   TES2 = subsetPanel(CCF, TES2)
   head(TES2)
@@ -381,8 +439,14 @@ for(f in files)
     
   }
   
-  ########################################## Plot 
+  
+  
+  ########################################## Plot order, rename + plot
   CCF = order.columns(CCF)
+
+  ### Rename all S to SVZ
+  colnames(CCF) = sapply(colnames(CCF), replace_S_SVZ)
+  
   CCF.plot(CCF, paste('PATIENT', patient), annotation, CSQ)
   
   
@@ -399,41 +463,41 @@ for(f in files)
 
 
 ###### EXAMPLE POWER-PLOT
-setwd(GIT)
-mu = 0.5
-rho = .05
-
-x = seq(10, 500, by = 10)
-y = NULL
-for(c in x)
-  y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
-
-# plot(x, y, log = 'xy', type = 'l')
-
-plot(log(x), log(y), type = 'l', xaxt = 'n', yaxt = 'n', xlab = 'Coverage (adjusted for purity)', ylab = 'P-value')
-points(log(x), log(y), pch = 18, col = 'orange')
-
-axis(1, x, at = log(x))
-
-vals = c(1, 0.05, 1e-2, 1e-3, 1e-4, 1e-6, 1e-8, 1e-10, 1e-12) 
-axis(2, vals, at = log(vals))
-abline(h = log(0.05), col = 'red', lty = 2)
-title(bquote(bold('Test power for') ~ mu ~'= 0.5 and'~ rho~ '=5 x'~10^{-2} ~ italic('at significance level')~ alpha ~' = 0.05'))
-      # sub = bquote(bold('Significance level:'~ alpha ~' = 0.05'))
-      # )
-
-load('RESULTS_TEST-52.RData', verbose = T)
-Summary
-
-real.points = unlist(lapply(Summary, function(w) w$coverage[1]))
-y = NULL
-for(c in real.points)
-  y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
-
-red.p = log(y) > log(0.05)
-points(log(real.points)[red.p], log(y)[red.p], pch = 19, col = 'red', cex = 2)
-points(log(real.points)[!red.p], log(y)[!red.p], pch = 19, col = 'darkgreen', cex = 2)
-
-dev.copy2pdf(file = 'test.pdf')
+# setwd(GIT)
+# mu = 0.5
+# rho = .05
+# 
+# x = seq(10, 500, by = 10)
+# y = NULL
+# for(c in x)
+#   y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
+# 
+# # plot(x, y, log = 'xy', type = 'l')
+# 
+# plot(log(x), log(y), type = 'l', xaxt = 'n', yaxt = 'n', xlab = 'Coverage (adjusted for purity)', ylab = 'P-value')
+# points(log(x), log(y), pch = 18, col = 'orange')
+# 
+# axis(1, x, at = log(x))
+# 
+# vals = c(1, 0.05, 1e-2, 1e-3, 1e-4, 1e-6, 1e-8, 1e-10, 1e-12) 
+# axis(2, vals, at = log(vals))
+# abline(h = log(0.05), col = 'red', lty = 2)
+# title(bquote(bold('Test power for') ~ mu ~'= 0.5 and'~ rho~ '=5 x'~10^{-2} ~ italic('at significance level')~ alpha ~' = 0.05'))
+#       # sub = bquote(bold('Significance level:'~ alpha ~' = 0.05'))
+#       # )
+# 
+# load('RESULTS_TEST-52.RData', verbose = T)
+# Summary
+# 
+# real.points = unlist(lapply(Summary, function(w) w$coverage[1]))
+# y = NULL
+# for(c in real.points)
+#   y = c(y, sum(dbetabinom(0:10, size = c, prob = mu, rho = rho)))
+# 
+# red.p = log(y) > log(0.05)
+# points(log(real.points)[red.p], log(y)[red.p], pch = 19, col = 'red', cex = 2)
+# points(log(real.points)[!red.p], log(y)[!red.p], pch = 19, col = 'darkgreen', cex = 2)
+# 
+# dev.copy2pdf(file = 'test.pdf')
 
 

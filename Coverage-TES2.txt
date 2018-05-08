@@ -1,0 +1,218 @@
+
+ 42 mean coverage
+
+42M 2691.6862745098
+42S 1609.72549019608
+
+ 42 median coverage
+
+42M 3006
+42S 1713
+
+ 42 mean coverage across all samples
+
+2150.706
+
+ 42 median coverage across all samples
+
+2359.5
+
+ 49 mean coverage
+
+49M 2582.14754098361
+49S 1782.72131147541
+
+ 49 median coverage
+
+49M 2230
+49S 1297
+
+ 49 mean coverage across all samples
+
+2182.434
+
+ 49 median coverage across all samples
+
+1763.5
+
+ 52 mean coverage
+
+52M 3741.97297297297
+52S 270.945945945946
+
+ 52 median coverage
+
+52M 4228.5
+52S 301
+
+ 52 mean coverage across all samples
+
+2006.459
+
+ 52 median coverage across all samples
+
+2264.75
+
+ 54 mean coverage
+
+54M1 1864.45833333333
+54M2 853.930555555556
+54S 2426.31944444444
+
+ 54 median coverage
+
+54M1 1963.5
+54M2 924.5
+54S 2672
+
+ 54 mean coverage across all samples
+
+1714.903
+
+ 54 median coverage across all samples
+
+1853.333
+
+ 55 mean coverage
+
+55Sbisre 4272.9
+
+ 55 median coverage
+
+55Sbisre 3651
+
+ 55 mean coverage across all samples
+
+4272.9
+
+ 55 median coverage across all samples
+
+3651
+
+ 56 mean coverage
+
+56M3 2656.09375
+56S 1371.8125
+56T2 2240.97916666667
+
+ 56 median coverage
+
+56M3 2935.5
+56S 1524
+56T2 2466.5
+
+ 56 mean coverage across all samples
+
+2089.628
+
+ 56 median coverage across all samples
+
+2308.667
+
+ 57 mean coverage
+
+57M 3160.10169491525
+57S 2478.50847457627
+57T1 662.949152542373
+
+ 57 median coverage
+
+57M 3564
+57S 2720
+57T1 774
+
+ 57 mean coverage across all samples
+
+2100.52
+
+ 57 median coverage across all samples
+
+2352.667
+
+ A23 mean coverage
+
+19M 504.031847133758
+19S 4.97452229299363
+A23M 834.254777070064
+A23S 805.703821656051
+A23T 736.035031847134
+
+ A23 median coverage
+
+19M 548
+19S 4
+A23M 875.5
+A23S 896.5
+A23T 807.5
+
+ A23 mean coverage across all samples
+
+577
+
+ A23 median coverage across all samples
+
+626.3
+
+ A34 mean coverage
+
+A34T2 978.0375
+A34T3 870.425
+
+ A34 median coverage
+
+A34T2 1112
+A34T3 928.5
+
+ A34 mean coverage across all samples
+
+924.2313
+
+ A34 median coverage across all samples
+
+1020.25
+
+ A44 mean coverage
+
+A44M 1167.24074074074
+A44S 419.740740740741
+A44T2 1347.37037037037
+A44T3 1716.05555555556
+A44T5 1264.22222222222
+
+ A44 median coverage
+
+A44M 1275.5
+A44S 489.5
+A44T2 1479.5
+A44T3 1943.5
+A44T5 1399
+
+ A44 mean coverage across all samples
+
+1182.926
+
+ A44 median coverage across all samples
+
+1317.4
+
+ SP28 mean coverage
+
+28S 406.306451612903
+A28M 3203.85483870968
+R11M 566.387096774194
+R11S 419.903225806452
+
+ SP28 median coverage
+
+28S 471.5
+A28M 3870.5
+R11M 645.5
+R11S 450.5
+
+ SP28 mean coverage across all samples
+
+1149.113
+
+ SP28 median coverage across all samples
+
+1359.5
