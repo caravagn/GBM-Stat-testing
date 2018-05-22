@@ -121,6 +121,7 @@ for(patient in patients)
   ### ANNOTATED CCF
   load(paste('../[Data] CCFs Annotated/ANNOTATED-CGC-', patient, '.RData', sep = ''))
   CSQ[!(CSQ$CGC %in% CSQ.specific.GBM), 'CGC'] = ''
+  CSQ
   
   ### RESTRICT TO SNVS and TARGET REGIONS
   loc = getnonSNV(WES)
