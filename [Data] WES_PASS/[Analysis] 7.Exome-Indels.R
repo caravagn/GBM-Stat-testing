@@ -114,7 +114,7 @@ CSQ.specific.GBM = c('PIK3R1', 'PIK3CA', 'PTEN', 'RB1', 'TP53', 'EGFR', 'IDH1', 
                      'NF1', 'SPTA1', 'GABRA6', 'KEL', 'CDH18', 'SEMA3C', 'PDGFRA', 'ATRX',
                      'COL1A2', 'LZTR1', 'ABCC9', 'NLRP5', 'DRD5', 'TCHH', 'SCN9A')
 
-# patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
+patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 
 for(patient in patients)
 {  
