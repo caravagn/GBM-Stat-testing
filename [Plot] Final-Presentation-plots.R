@@ -64,10 +64,22 @@ CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
   SNV.status[is.na(SNV.status), 'SNV Status'] = 'NA'
   
 
+  # Iavarone and Rabadan
   CSQ.specific.GBM = c('ATRX', 'TP53', 'MMR', 'LTBP4', 'PIK3CA', 'PIK3R1', 'PDGFRA', 'EGFR', 'NF1', 'PTPN11', 'PTEN', 'RB1', 'TERT')
+  
+  # TCGA
+  CSQ.specific.GBM = c('PIK3R1', 'PIK3CA', 'PTEN', 'RB1', 'TP53', 'EGFR', 'IDH1', 'BRAF',
+                            'NF1', 'SPTA1', 'GABRA6', 'KEL', 'CDH18', 'SEMA3C', 'PDGFRA', 'ATRX',
+                            'COL1A2', 'LZTR1', 'ABCC9', 'NLRP5', 'DRD5', 'TCHH', 'SCN9A')
+  
+  
   CSQ.names = CSQ[rownames(CCF), 'CGC']
-  CSQ.names = sapply(CSQ.names, function(s) if(nchar(s) > 0 & (s %in% CSQ.specific.GBM)) {paste('-', s);} else "")
+  CSQ.names = sapply(CSQ.names, function(s) 
+    if(nchar(s) > 0 & (s %in% CSQ.specific.GBM)) {paste('-', s);} else "")
   names(CSQ.names) = NULL
+  
+  
+  # CSQ.names = paste(rownames(CCF), CSQ.names)
   
   # !(rownames(annotation) %in%   rownames(SNV.status)) 
 
@@ -100,6 +112,7 @@ CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
            border_color = NA, 
            cellwidth = 20,
            fontsize = 16,
+           # cellheight = 10,
            cellheight = 4,
            file = paste('FinalPlot', patient, '.pdf', sep = '-'), 
            width = 20, height = 40 

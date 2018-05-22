@@ -41,10 +41,10 @@ getSNVsonly = function(f) {
 getnonSNV = function(f){
  
   snvlocs = which(!unlist(lapply(strsplit(getREF(f), ""), function(x) length(x)>1)) & !unlist(lapply(strsplit(getALT(f), ""), function(x) length(x)>1)))
-  all.rows = 1:nrow(WES)
+  setdiff(1:nrow(f), snvlocs)
   
   # snvlocs %in% all.rows
-  all.rows[!(all.rows %in% snvlocs)]
+  # all.rows[!(all.rows %in% snvlocs)]
 }
 
 # Subsets regions that overlap with a bed file, takes positions as input as "1_123456", also location of bed file
@@ -104,10 +104,17 @@ replace_S_SVZ = function(w) {
     w
 }
 
-
-
 BEDFILE = '../S04380110_Covered.bed'
+
+# Iavarone and Rabadan
 CSQ.specific.GBM = c('ATRX', 'TP53', 'MMR', 'LTBP4', 'PIK3CA', 'PIK3R1', 'PDGFRA', 'EGFR', 'NF1', 'PTPN11', 'PTEN', 'RB1', 'TERT')
+
+# TCGA
+CSQ.specific.GBM = c('PIK3R1', 'PIK3CA', 'PTEN', 'RB1', 'TP53', 'EGFR', 'IDH1', 'BRAF',
+                     'NF1', 'SPTA1', 'GABRA6', 'KEL', 'CDH18', 'SEMA3C', 'PDGFRA', 'ATRX',
+                     'COL1A2', 'LZTR1', 'ABCC9', 'NLRP5', 'DRD5', 'TCHH', 'SCN9A')
+
+# patients = c('42', '49', '52', '54', '55', '56', '57', 'A23', 'A34', 'A44', 'SP28')
 
 for(patient in patients)
 {  
@@ -118,28 +125,46 @@ for(patient in patients)
   WES.VCF$NV <- extract.gt(WES, element='NV', as.numeric=TRUE)
   WES.VCF$NR <- extract.gt(WES, element='NR', as.numeric=TRUE)
   
-  ### ANNOTATED CCF
-  load(paste('../[Data] CCFs Annotated/ANNOTATED-CGC-', patient, '.RData', sep = ''))
-  CSQ[!(CSQ$CGC %in% CSQ.specific.GBM), 'CGC'] = ''
-  CSQ
-  
   ### RESTRICT TO SNVS and TARGET REGIONS
   loc = getnonSNV(WES)
   locSNV = getSNVsonly(WES)
+  intersect(loc, locSNV)
   
+  annotation = data.frame(Type = rep('SNV', nrow(WES.VCF$NV)), stringsAsFactors = FALSE)
+  annotation[loc, ] = 'Indel'
+  rownames(annotation) = rownames(WES.VCF$NV)
+  
+  names.to.fix = which(!startsWith(rownames(annotation), 'chr'))
+  rownames(annotation)[names.to.fix] = paste('chr', rownames(annotation)[names.to.fix], sep = '')
+  
+  # Data
   data = WES.VCF$NV/WES.VCF$NR
   dataB = data
   dataB[dataB > 0.05] = 1
   dataB[dataB <= 0.05] = 0
   
-  dataB = dataB[swantonOrder(dataB), , drop = F]
+  names.to.fix = which(!startsWith(rownames(dataB), 'chr'))
+  rownames(dataB)[names.to.fix] = paste('chr', rownames(dataB)[names.to.fix], sep = '')
   
-  annotation = data.frame(Type = rep('SNV', nrow(WES.VCF$NV)), stringsAsFactors = FALSE)
-  annotation[loc, ] = 'Indel'
-  rownames(annotation) = rownames(dataB)
+  ### ANNOTATED CCF
+  load(paste('../[Data] CCFs Annotated/ANNOTATED-CGC-', patient, '.RData', sep = ''), verbose = T)
+  
+  CSQ[!(CSQ$CGC %in% CSQ.specific.GBM), 'CGC'] = ''
+  head(CSQ)
+
+  rownames(CSQ) %in% rownames(dataB)
+  
+  dataB = dataB[swantonOrder(dataB), , drop = F]
+  head(dataB)
+  
+  CSQ = CSQ[rownames(dataB), , drop = FALSE]
+  annotation = annotation[rownames(dataB), , drop = FALSE]
+  rownames(CSQ) == rownames(dataB)
+  rownames(annotation) == rownames(dataB)
+  
   
   idx = which(CSQ$CGC != '')
-  for(i in idx) CSQ[i, 'CGC'] = paste(CSQ[i, 'CGC'], annotation[i, ])
+  for(i in idx) CSQ[i, 'CGC'] = paste(CSQ[i, 'CGC'], annotation[i, ], CSQ[i, 'Mutation'])
   
   head(dataB)
   dataB = namify.wesPanel(dataB, patient, 'WES')
@@ -161,6 +186,8 @@ for(patient in patients)
     dataB = dataB[, c(4, 5,6,7, 1:3)]
   }
   
+  CSQ$CGC = paste(rownames(CSQ), ' ', CSQ$CGC)
+  
   
   pheatmap(dataB, 
            main = paste(patient, '-- VAF cutoff 0.05'),
@@ -170,7 +197,7 @@ for(patient in patients)
            color = RColorBrewer::brewer.pal(9, 'Blues'),
            legend = F,
            cellwidth = 20,
-           cellheight = 5,
+           cellheight = 8,
            fontsize_row = 6,
            labels_row = CSQ$CGC,
            file = paste(patient, '-indels_SNV-plot.pdf', sep = ''))

@@ -6,3 +6,4 @@ ls()
 Summary
 load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/RESULTS_TEST-52.RData")
 Summary
+load("/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/RESULTS_TEST-49.RData")

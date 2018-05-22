@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="SM-meth.svg"
+   inkscape:export-filename="/Users/gcaravagna/Documents/GitHub/GBM-Stat-testing/Document/SM-meth.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
   <defs
      id="defs2">
     <marker
@@ -436,14 +439,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.3063128"
-     inkscape:cx="455.65308"
-     inkscape:cy="902.56905"
+     inkscape:cx="923.76455"
+     inkscape:cy="167.67615"
      inkscape:document-units="mm"
-     inkscape:current-layer="g13915"
+     inkscape:current-layer="g624"
      showgrid="false"
-     inkscape:window-width="1598"
-     inkscape:window-height="1036"
-     inkscape:window-x="1398"
+     inkscape:window-width="1280"
+     inkscape:window-height="756"
+     inkscape:window-x="-13"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -5035,6 +5038,7 @@
    style="font-weight:bold"
    id="tspan14530">Coverage</tspan>
 
+
  (adjusted for purity)</tspan>
       </text>
       <text
@@ -6074,15 +6078,15 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32.45914078px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.79097652"
-         x="511.28217"
-         y="-467.20956"
+         x="432.20944"
+         y="-456.58786"
          id="text17870"
          transform="scale(1,-1)"><tspan
            sodipodi:role="line"
            id="tspan17868"
-           x="511.28217"
-           y="-467.20956"
-           style="fill:#ff0000;stroke-width:3.79097652">Accept H<tspan
+           x="432.20944"
+           y="-456.58786"
+           style="fill:#ff0000;stroke-width:3.79097652">Fail to reject H<tspan
    style="font-size:21.09844017px;baseline-shift:sub;fill:#ff0000;stroke-width:3.79097652"
    id="tspan17872">0</tspan></tspan></text>
       <text
