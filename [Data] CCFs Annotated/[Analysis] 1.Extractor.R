@@ -22,7 +22,6 @@ for(patient in patients)
   rownames(WES.NV)[names.to.fix] = paste('chr', rownames(WES.NV)[names.to.fix], sep = '')
   head(WES.NV)
   
-  
   # nrow(WES.NV)
   # coords = rownames(WES.NV)
   # 

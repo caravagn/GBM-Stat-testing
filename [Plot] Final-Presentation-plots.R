@@ -79,7 +79,7 @@ CCF.plot = function(CCF, patient, annotation = NULL, CSQ)
   names(CSQ.names) = NULL
   
   
-  # CSQ.names = paste(rownames(CCF), CSQ.names)
+  CSQ.names = paste(rownames(CCF), CSQ.names)
   
   # !(rownames(annotation) %in%   rownames(SNV.status)) 
 
